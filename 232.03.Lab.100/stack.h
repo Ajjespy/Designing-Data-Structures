@@ -15,7 +15,7 @@
  *    This will contain the class definition of:
  *       stack             : similar to std::stack
  * Author
- *    <your names here>
+ *    Austin Jesperson, Emilio Ordonez, Evan Riker
  ************************************************************************/
 
 #pragma once
@@ -43,7 +43,7 @@ public:
    // Construct
    // 
 
-   stack()                            { container.resize(7); }
+   stack()                            { container.resize(0); }
    stack(const stack <T> &  rhs)      { container.resize(7); }
    stack(      stack <T> && rhs)      { container.resize(7); }
    stack(const std::vector<T> &  rhs) { container.resize(7); }
@@ -78,23 +78,43 @@ public:
    // Insert
    // 
 
-   void push(const T&  t) {  }
-   void push(      T&& t) {  }
+   void push(const T&  t) 
+   {
+       container.push_back(t);
+   }
+   void push(      T&& t) 
+   {
+       container.push_back(std::move(t));
+   }
 
    //
    // Remove
    //
 
    void pop() 
-   { 
-      
+   {
+       if (container.size() > 0)
+       {
+           container.pop_back();
+       }
+       else
+       {
+           return;
+       }
    }
 
    //
    // Status
    //
-   size_t  size () const { return 99;  }
-   bool empty   () const { return true; }
+   size_t  size() const { return container.size(); }
+   bool empty   () const 
+   { 
+       if (container.size() == 0)
+       {
+           return true;
+       }
+       return false;
+   }
    
 private:
    
