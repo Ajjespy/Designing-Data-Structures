@@ -43,11 +43,14 @@ public:
    // Construct
    // 
 
-   stack()                            { container.resize(0); }
-   stack(const stack <T> &  rhs)      { container.resize(7); }
-   stack(      stack <T> && rhs)      { container.resize(7); }
-   stack(const std::vector<T> &  rhs) { container.resize(7); }
-   stack(      std::vector<T> && rhs) { container.resize(7); }
+   stack()  
+   { container.resize(defaultSize); }
+   stack(const stack <T> &  rhs)      { container.resize(rhs.container.size()); }
+   stack(      stack <T> && rhs)      { container.resize(rhs.container.size()); }
+   
+   stack(const std::vector<T> &  rhs) { container.resize(rhs.size()); }
+   stack(      std::vector<T> && rhs) { container.resize(rhs.size()); }
+
    ~stack()                           {                      }
 
    //
@@ -56,15 +59,17 @@ public:
 
    stack <T> & operator = (const stack <T> & rhs)
    {
-      return *this;
+       container = rhs.container;
+       return *this;
    }
    stack <T>& operator = (stack <T> && rhs)
    {
-      return *this;
+       container = rhs.container;
+       return *this;
    }
    void swap(stack <T>& rhs)
    {
-
+        
    }
 
    // 
@@ -117,6 +122,8 @@ public:
    }
    
 private:
+
+    int defaultSize = 0;
    
   std::vector<T> container;  // underlying container
 };

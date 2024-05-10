@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\evanriker\\Desktop\\232.03.Lab.100\\",
+  "WorkspaceRootPath": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|C:\\Users\\evanriker\\Desktop\\232.03.Lab.100\\stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|solutionrelative:stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "stack.h",
-              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\232.03.Lab.100\\stack.h",
+              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h",
               "RelativeDocumentMoniker": "stack.h",
-              "ToolTip": "C:\\Users\\evanriker\\Desktop\\232.03.Lab.100\\stack.h",
+              "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h",
               "RelativeToolTip": "stack.h",
-              "ViewState": "AQIAACEAAAAAAAAAAAAAADIAAAAQAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAAAEoAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-07T01:15:17.918Z",
               "EditorCaption": ""
