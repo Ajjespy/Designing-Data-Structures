@@ -45,8 +45,14 @@ public:
 
    stack()  
    { container.resize(defaultSize); }
-   stack(const stack <T> &  rhs)      { container.resize(rhs.container.size()); }
-   stack(      stack <T> && rhs)      { container.resize(rhs.container.size()); }
+   stack(const stack <T> &  rhs)      
+   { 
+       container.reserve(rhs.container.size()); // Reserve space to avoid unnecessary reallocations
+       for (const T& element : rhs.container) {
+           container.push_back(element); // Copy each element from rhs to this container
+       }
+   }
+   stack(      stack <T> && rhs)      { container.swap(rhs.container); }
    
    stack(const std::vector<T> &  rhs) { container.resize(rhs.size()); }
    stack(      std::vector<T> && rhs) { container.resize(rhs.size()); }
@@ -64,20 +70,20 @@ public:
    }
    stack <T>& operator = (stack <T> && rhs)
    {
-       container = rhs.container;
+       container = std::move(rhs.container);
        return *this;
    }
    void swap(stack <T>& rhs)
    {
-        
+       container.swap(rhs.container);
    }
 
    // 
    // Access
    //
 
-         T& top()       { return *(new T); }
-   const T& top() const { return *(new T); }
+   T& top() { return container[container.size() - 1]; }
+   const T& top() const { return container[container.size() - 1]; }
 
    // 
    // Insert
