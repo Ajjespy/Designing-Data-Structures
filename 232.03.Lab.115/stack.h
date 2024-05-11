@@ -40,11 +40,16 @@ public:
    // Construct
    //
    
-   stack()                       { container.resize(7); }
-   stack(const stack <T> &  rhs) { container.resize(7); }
-   stack(      stack <T> && rhs) { container.resize(7); }
-   stack(const Container &  rhs) { container.resize(7); }
-   stack(      Container && rhs) { container.resize(7); }
+   stack()                       { container.resize(defaultSize); }
+   stack(const stack <T> &  rhs) {
+       container.reserve(rhs.container.size()); // Reserve space to avoid unnecessary reallocations
+       for (const T& element : rhs.container) {
+           container.push_back(element); // Copy each element from rhs to this container
+       }
+   }
+   stack(      stack <T> && rhs) { container.swap(rhs.container); }
+   stack(const Container &  rhs) { container.resize(rhs.size()); }
+   stack(      Container && rhs) { container.resize(rhs.size()); }
    ~stack()                      {                      }     
    
    //
@@ -67,27 +72,15 @@ public:
    // Access
    //
    
-   T & top()       
-   { 
-      return *(new T); 
-   }
-   const T & top() const 
-   { 
-      return *(new T); 
-   }
+         T & top()       { return container[container.size() - 1]; }
+   const T & top() const { return container[container.size() - 1]; }
 
    //
    // Insert
    //
    
-   void push(const T &  t) 
-   {  
-   
-   }
-   void push(      T && t) 
-   {  
-   
-   }
+   void push(const T& t)  { container.push_back(t); }
+   void push(      T&& t) { container.push_back(std::move(t)); }
 
    //
    // Remove
@@ -95,18 +88,31 @@ public:
    
    void pop() 
    {  
-   
+       if (container.size() > 0)
+       {
+           container.pop_back();
+       }
+       else
+       {
+           return;
+       }
    }
 
    //
    // Status
    //
    
-   size_t size () const { return 99;   }
-   bool   empty() const { return true; }
+   size_t size () const { return container.size(); }
+   bool   empty() const {
+       if (container.size() == 0)
+       {
+           return true;
+       }
+       return false;
+   }
    
 private:
-   
+   static int defaultSize = 0;
    Container container;  // underlying container (probably a vector)
 };
 

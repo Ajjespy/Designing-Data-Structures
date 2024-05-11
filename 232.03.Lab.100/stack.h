@@ -43,8 +43,7 @@ public:
    // Construct
    // 
 
-   stack()  
-   { container.resize(defaultSize); }
+   stack()  { container.resize(defaultSize); }
    stack(const stack <T> &  rhs)      
    { 
        container.reserve(rhs.container.size()); // Reserve space to avoid unnecessary reallocations
@@ -129,7 +128,7 @@ public:
    
 private:
 
-    int defaultSize = 0;
+    static int defaultSize = 0;
    
   std::vector<T> container;  // underlying container
 };
