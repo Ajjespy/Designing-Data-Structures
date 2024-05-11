@@ -3,11 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.115\\stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|solutionrelative:stack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\testStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|solutionrelative:testStack.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\unitTest.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{174D9C02-293E-48E2-84B4-5B4889B7FF95}|LabStack.vcxproj|solutionrelative:unitTest.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,53 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "stack.h",
-              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.115\\stack.h",
-              "RelativeDocumentMoniker": "..\\232.03.Lab.115\\stack.h",
-              "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.115\\stack.h",
-              "RelativeToolTip": "..\\232.03.Lab.115\\stack.h",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAAAHQAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-11T16:53:37.077Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "df74ddb2-aec6-4e82-8f8e-dc91eea29aad",
-        "Display": 0,
-        "X": 710,
-        "Y": 73,
-        "Width": 799,
-        "Height": 631,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "testStack.h",
+              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\testStack.h",
+              "RelativeDocumentMoniker": "testStack.h",
+              "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\testStack.h",
+              "RelativeToolTip": "testStack.h",
+              "ViewState": "AQIAAJcEAAAAAAAAAAAWwIgEAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-11T21:45:31.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "stack.h",
               "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h",
               "RelativeDocumentMoniker": "stack.h",
               "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\stack.h",
               "RelativeToolTip": "stack.h",
-              "ViewState": "AQIAAHIAAAAAAAAAAAAAAHkAAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-05-07T01:15:17.918Z",
+              "WhenOpened": "2024-05-11T21:44:55.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "unitTest.h",
+              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\unitTest.h",
+              "RelativeDocumentMoniker": "unitTest.h",
+              "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.03.Lab.100\\unitTest.h",
+              "RelativeToolTip": "unitTest.h",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAhwBcAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-11T21:38:37.419Z",
               "EditorCaption": ""
             }
           ]

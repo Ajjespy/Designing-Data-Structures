@@ -60,6 +60,10 @@ public:
    //
    void swap(vector& rhs)
    {
+       for (const auto& target : rhs)
+       {
+           push_back(target);
+       }
    }
    vector & operator = (const vector & rhs);
    vector & operator = (vector&& rhs);

@@ -128,7 +128,7 @@ public:
    
 private:
 
-    static int defaultSize = 0;
+    int defaultSize = 0;
    
   std::vector<T> container;  // underlying container
 };

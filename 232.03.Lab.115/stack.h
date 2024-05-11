@@ -50,22 +50,24 @@ public:
    stack(      stack <T> && rhs) { container.swap(rhs.container); }
    stack(const Container &  rhs) { container.resize(rhs.size()); }
    stack(      Container && rhs) { container.resize(rhs.size()); }
-   ~stack()                      {                      }     
+   ~stack()                      { }     
    
    //
    // Assign
    //
    stack <T> & operator = (const stack <T> & rhs)
    {
-      return *this;
+       container = rhs.container;
+       return *this;
    }
    stack <T>& operator = (stack <T> && rhs)
    {
-      return *this;
+       container = std::move(rhs.container);
+       return *this;
    }
    void swap(stack <T>& rhs)
    {
-
+       container.swap(rhs.container);
    }
 
    //
@@ -79,7 +81,7 @@ public:
    // Insert
    //
    
-   void push(const T& t)  { container.push_back(t); }
+   void push(const T&  t) { container.push_back(t); }
    void push(      T&& t) { container.push_back(std::move(t)); }
 
    //
@@ -112,7 +114,7 @@ public:
    }
    
 private:
-   static int defaultSize = 0;
+   int defaultSize = 0;
    Container container;  // underlying container (probably a vector)
 };
 

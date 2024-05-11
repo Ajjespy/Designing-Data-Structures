@@ -1,2 +1,71 @@
 ﻿  testStack.cpp
-  LabStack.vcxproj -> C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\x64\Debug\LabStack.exe
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662: 'custom::vector<T,std::allocator<T>>::iterator custom::vector<T,std::allocator<T>>::begin(void)': cannot convert 'this' pointer from 'const Container' to 'custom::vector<T,std::allocator<T>> &'
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         with
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             T=Spy
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         and
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             Container=custom::vector<Spy,std::allocator<Spy>>
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         and
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             T=Spy
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+  (compiling source file 'testStack.cpp')
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35):
+  Conversion loses qualifiers
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\vector.h(75,13):
+  see declaration of 'custom::vector<T,std::allocator<T>>::begin'
+          with
+          [
+              T=Spy
+          ]
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35):
+  while trying to match the argument list '()'
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\testStack.h(101,26):
+  	see reference to class template instantiation 'custom::stack<Spy,custom::vector<T,std::allocator<T>>>' being compiled
+          with
+          [
+              T=Spy
+          ]
+  	C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(44,4):
+  	while compiling class template member function 'custom::stack<Spy,custom::vector<T,std::allocator<T>>>::stack(const custom::stack<T,custom::vector<T,std::allocator<T>>> &)'
+          with
+          [
+              T=Spy
+          ]
+  		C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\testStack.h(194,31):
+  		see the first reference to 'custom::stack<Spy,custom::vector<T,std::allocator<T>>>::stack' in 'TestStack::test_constructCopy_empty'
+          with
+          [
+              T=Spy
+          ]
+  
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662: 'custom::vector<T,std::allocator<T>>::iterator custom::vector<T,std::allocator<T>>::end(void)': cannot convert 'this' pointer from 'const Container' to 'custom::vector<T,std::allocator<T>> &'
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         with
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             T=Spy
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         and
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             Container=custom::vector<Spy,std::allocator<Spy>>
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         and
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         [
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:             T=Spy
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35): error C2662:         ]
+  (compiling source file 'testStack.cpp')
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35):
+  Conversion loses qualifiers
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\vector.h(79,13):
+  see declaration of 'custom::vector<T,std::allocator<T>>::end'
+          with
+          [
+              T=Spy
+          ]
+  C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.03.Lab.115\stack.h(46,35):
+  while trying to match the argument list '()'
+  
