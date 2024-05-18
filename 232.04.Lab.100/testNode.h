@@ -311,8 +311,13 @@ public:
       // exercise
       assign(p11, pSrc);
       // verify
-      assertUnit(Spy::numDestructor() == 3);  // destroy [11][26][31]
-      assertUnit(Spy::numDelete() == 3);      // delete  [11][26][31]
+      int temp1 = Spy::numDestructor(); // destroy [11][26][31]
+      assertUnit(temp1 == 3);  // currently 0
+      int temp2 = Spy::numDelete(); // delete  [11][26][31]
+      assertUnit(temp2 == 3); // currently 0
+
+      // Hyposthisis: this is the same 3 operations preformed on the 3 elements.
+
       assertUnit(Spy::numCopy() == 0);
       assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numDefault() == 0);
@@ -346,12 +351,23 @@ public:
       Spy::reset();
       // exercise
       assign(p11, p67);
+
       // verify
-      assertUnit(Spy::numDestructor() == 1);  // destroy [31]
-      assertUnit(Spy::numDelete() == 1);      // delete  [31]
-      assertUnit(Spy::numAssign() == 2);      // assign [67][89] onto [11][26];
-      assertUnit(Spy::numCopy() == 0);
-      assertUnit(Spy::numAlloc() == 0);
+      int temp1 = Spy::numDestructor(); // destroy [31]
+      assertUnit(temp1 == 1);  // currently 0
+
+      int temp2 = Spy::numDelete(); // delete  [31]
+      assertUnit(temp2 == 1);  // currently 0
+
+      int temp3 = Spy::numAssign(); // assign [67][89] onto [11][26];
+      assertUnit(temp3 == 2); // currently 0
+
+      int temp4 = Spy::numCopy();
+      assertUnit(temp4 == 0); // currently 2
+
+      int temp5 = Spy::numAlloc();
+      assertUnit(temp5 == 0); // currently 2
+
       assertUnit(Spy::numDefault() == 0);
       assertUnit(Spy::numNondefault() == 0);
       assertUnit(Spy::numCopyMove() == 0);
@@ -367,14 +383,17 @@ public:
       {
          assertUnit(p11->data == Spy(67));
          assertUnit(p11->pPrev == nullptr);
-         assertUnit(p11->pNext == p26);
+
+         Spy temp6 = p11->data; // currently .p = 67
+         assertUnit(p11->pNext == p26); //pNext goes to 89
       }
       assertUnit(p26 != nullptr);
       if (p26)
       {
-         assertUnit(p26->data == Spy(89));
-         assertUnit(p26->pPrev == p11);
-         assertUnit(p26->pNext == nullptr);
+          Spy temp7 = p26->data;
+         assertUnit(p26->data == Spy(89)); //currently 26
+         assertUnit(p26->pPrev == p11); //currently 11, expecting 67
+         assertUnit(p26->pNext == nullptr); //currently 31
       }
       //     p67      p89  
       //    +----+   +----+
@@ -418,12 +437,19 @@ public:
       p67->pNext = p89;
       p89->pPrev = p67;
       Spy::reset();
+
       // exercise
       assign(p67, p11);
+
       // verify
-      assertUnit(Spy::numAssign() == 2);      // assign [11][26] onto [67][89]
-      assertUnit(Spy::numCopy() == 1);        // copy-create [31]
-      assertUnit(Spy::numAlloc() == 1);       // allocate [31]
+      int temp1 = Spy::numAssign(); // assign [11][26] onto [67][89]
+      assertUnit(temp1 == 2);      //currently 0
+
+      int temp2 = Spy::numCopy();  // copy-create [31]
+      assertUnit(temp2 == 1);        // currently 3
+
+      int temp3 = Spy::numAlloc(); // allocate [31]
+      assertUnit(temp3 == 1);       //currently 3
       assertUnit(Spy::numDestructor() == 0);
       assertUnit(Spy::numDelete() == 0);      
       assertUnit(Spy::numDefault() == 0);

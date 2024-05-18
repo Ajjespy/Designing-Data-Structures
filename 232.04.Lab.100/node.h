@@ -63,25 +63,43 @@ public:
 template <class T>
 inline Node<T>* copy(const Node<T>* pSource)
 {
-    if (!pSource)
+    // if the sorce is null, return null
+    if (!pSource){
         return nullptr;
+    }
 
+    // store a copy of the sorce thats const to save memory
     const Node<T>* currentSource = pSource;
 
+    // move the data from the copy of sorce to new list.
     Node<T>* newList = new Node<T>(currentSource->data);
 
+    // make a copy of new list
     Node<T>* currentNew = newList;
-
+    
+    // move to the next node... not sure why you can update current sorce
+    // as its const...
     currentSource = currentSource->pNext;
 
+    // loop until you go beyond the last node in the list
     while (currentSource != nullptr)
     {
+        // make a copy of our itorator
         Node<T>* newNode = new Node<T>(*currentSource);
 
+        // update the next/prev value for the newList copy.
+        // on the first loop, currentNew is a copy of PSource,
+        // and currentSource and newNode are a copy is the next node after pSource
+        
+        // the next two lines connect newNode and currentNew with newNode at i+1
         currentNew->pNext = newNode;
         newNode->pPrev = currentNew;
 
+        // we advance our current new to the next node in the line 
+        // so we can configure its next nodes.
         currentNew = currentNew->pNext;
+
+        // then we advance our itorator.
         currentSource = currentSource->pNext;
     }
 
