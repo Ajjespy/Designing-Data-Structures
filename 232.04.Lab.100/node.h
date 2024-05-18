@@ -190,7 +190,8 @@ inline void assign(Node<T>*& pDestination, const Node<T>* pSource)
     if (prevDest)
         prevDest->pNext = nullptr;
     else
-        pDestination = nullptr;  // This handles the case where pSource is empty
+        // This handles the case where pSource is empty
+        pDestination = nullptr;  
 }
 /***********************************************
  * SWAP
