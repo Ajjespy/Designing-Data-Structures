@@ -115,11 +115,42 @@ inline Node<T>* copy(const Node<T>* pSource)
  *   COST   : O(n)
  **********************************************/
 template <class T>
-inline void assign(Node <T> * & pDestination, const Node <T> * pSource)
+inline void assign(Node<T>*& pDestination, const Node<T>* pSource)
 {
-    pDestination = copy(pSource);
-}
+    Node<T>* currentDest = pDestination;
+    Node<T>* prevDest = nullptr;
+    const Node<T>* currentSource = pSource;
 
+    while (currentSource)
+    {
+        if (currentDest)
+        {
+            currentDest->data = currentSource->data;
+            prevDest = currentDest;
+            currentDest = currentDest->pNext;
+        }
+        else
+        {
+            Node<T>* newNode = new Node<T>(currentSource->data);
+            if (prevDest)
+                prevDest->pNext = newNode;
+            else
+                pDestination = newNode;
+            prevDest = newNode;
+        }
+        currentSource = currentSource->pNext;
+    }
+
+    while (currentDest)
+    {
+        Node<T>* temp = currentDest;
+        currentDest = currentDest->pNext;
+        delete temp;
+    }
+
+    if (prevDest)
+        prevDest->pNext = nullptr;
+}
 /***********************************************
  * SWAP
  * Swap the list from LHS to RHS
