@@ -125,22 +125,26 @@ inline void assign(Node<T>*& pDestination, const Node<T>* pSource)
     {
         if (currentDest)
         {
+            // Reuse existing node
             currentDest->data = currentSource->data;
-            prevDest = currentDest;
+            prevDest = currentDest;  // Update prevDest to current node
             currentDest = currentDest->pNext;
         }
         else
         {
+            // Create new node and link it
             Node<T>* newNode = new Node<T>(currentSource->data);
             if (prevDest)
                 prevDest->pNext = newNode;
             else
                 pDestination = newNode;
+            newNode->pPrev = prevDest;
             prevDest = newNode;
         }
         currentSource = currentSource->pNext;
     }
 
+    // Cleanup remaining nodes in pDestination if any
     while (currentDest)
     {
         Node<T>* temp = currentDest;
@@ -148,8 +152,11 @@ inline void assign(Node<T>*& pDestination, const Node<T>* pSource)
         delete temp;
     }
 
+    // Ensure the new end of the list is correctly terminated
     if (prevDest)
         prevDest->pNext = nullptr;
+    else
+        pDestination = nullptr;  // This handles the case where pSource is empty
 }
 /***********************************************
  * SWAP
