@@ -125,22 +125,56 @@ inline void assign(Node<T>*& pDestination, const Node<T>* pSource)
     {
         if (currentDest)
         {
-            // Reuse existing node
+            // copy over the data form the sorce
             currentDest->data = currentSource->data;
-            prevDest = currentDest;  // Update prevDest to current node
-            currentDest = currentDest->pNext;
+
+            // I tried to pull the above line along with the corisponding step
+            // out of this if, but tests fail. 
+            
+            // is because we have to pass some kind of data to the constructer
+            // so the template has somthing to work off of. I need to create
+            // a new constructer that allows me to pass just T if 
+            // i want to pull this line out.
+
         }
         else
         {
-            // Create new node and link it
-            Node<T>* newNode = new Node<T>(currentSource->data);
-            if (prevDest)
-                prevDest->pNext = newNode;
-            else
-                pDestination = newNode;
-            newNode->pPrev = prevDest;
-            prevDest = newNode;
+            // currentDestination is null. This means the existing list
+            // wasent long enouph and we need to make it longer, so we need to
+            // create a new node and establish its conections with the prevous
+            // nodes
+
+            // the constructer also passes our data. I would rather this
+            // just construct the node, not pass in data. see line 134 for
+            // more on this problem.
+            currentDest = new Node<T>(currentSource->data);
+
+            
+
+            // link the prevous destination
+            currentDest->pPrev = prevDest;
+
+            // as long as a prevous destination exists, 
+            // (ie, we are not at the start of the list) 
+            // link it to our current destitation 
+            if (prevDest) {
+                prevDest->pNext = currentDest;
+            }
+
+            // I dont know what this code is for, but if i remove it
+            // a test fails.
+            else {
+                pDestination = currentDest;
+            }
         }
+
+        // save the current currentDest as the prevous dest
+        // this will be used if the next currentDest is null.
+        prevDest = currentDest;
+
+        // advance the next currentDest
+        currentDest = currentDest->pNext;
+
         currentSource = currentSource->pNext;
     }
 
