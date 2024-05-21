@@ -15,7 +15,7 @@
  *        List         : A class that represents a List
  *        ListIterator : An iterator through List
  * Author
- *    <your names here>
+ *    Emilio Ordonez, Austin Jesperson, Evan Riker
  ************************************************************************/
 
 #pragma once
@@ -141,10 +141,12 @@ public:
    Node(const T &  data)  
    {
       pNext = pPrev = nullptr;
+      this->data = data;
    }
    Node(      T && data)  
    {
       pNext = pPrev = nullptr;
+      this->data = data;
    }
 
    //
@@ -169,55 +171,57 @@ class list <T> :: iterator
    friend class custom::list;
 public:
    // constructors, destructors, and assignment operator
-   iterator() 
-   {
-      p = new typename list <T> ::Node;
-   }
-   iterator(Node * p) 
-   {
-      p = new typename list <T> ::Node;
-   }
-   iterator(const iterator  & rhs) 
-   {
-      p = new typename list <T> ::Node;
-   }
+    iterator() : p(nullptr) {}
+    iterator(Node* p) : p(p) {}
+    iterator(const iterator& rhs) : p(rhs.p) {}
    iterator & operator = (const iterator & rhs)
    {
-      return *this;
+       p = rhs.p;
+       return *this;
    }
    
    // equals, not equals operator
-   bool operator == (const iterator & rhs) const { return true; }
-   bool operator != (const iterator & rhs) const { return true; }
+   bool operator == (const iterator& rhs) const { return p == rhs.p; }
+   bool operator != (const iterator& rhs) const { return p != rhs.p; }
 
    // dereference operator, fetch a node
    T & operator * ()
    {
-      return *(new T);
+       return p->data;
    }
 
    // postfix increment
    iterator operator ++ (int postfix)
    {
-      return *this;
+       iterator tmp = *this;
+       if (p)
+           p = p->pNext;
+       return tmp;
    }
 
    // prefix increment
    iterator & operator ++ ()
    {
-      return *this;
+       if (p)
+           p = p->pNext;
+       return *this;
    }
    
    // postfix decrement
    iterator operator -- (int postfix)
    {
-      return *this;
+       iterator tmp = *this;
+       if (p)
+           p = p->pPrev;
+       return tmp;
    }
 
    // prefix decrement
    iterator & operator -- ()
    {
-      return *this;
+       if (p)
+           p = p->pPrev;
+       return *this;
    } 
 
    // two friends who need to access p directly
@@ -260,8 +264,25 @@ list <T> ::list(Iterator first, Iterator last)
 template <typename T>
 list <T> ::list(const std::initializer_list<T>& il)
 {
-   numElements = 99;
-   pHead = pTail = new list <T> ::Node();
+    if (il.size() == 0)
+        return;
+
+    auto it = il.begin();
+    pHead = new Node(*it);
+    Node* current = pHead;
+    ++it;
+    ++numElements;
+
+    for (; it != il.end(); ++it)
+    {
+        
+        current->pNext = new Node(*it);
+        current->pNext->pPrev = current;
+        current = current->pNext;
+        ++numElements;
+    }
+
+    pTail = current;
 }
 
 /*****************************************
@@ -281,8 +302,8 @@ list <T> ::list(size_t num)
 template <typename T>
 list <T> ::list() 
 {
-   numElements = 99;
-   pHead = pTail = new list <T> ::Node();
+    pHead = pTail = nullptr;
+    numElements = 0;
 }
 
 /*****************************************
@@ -291,8 +312,23 @@ list <T> ::list()
 template <typename T>
 list <T> ::list(list& rhs) 
 {
-   numElements = 99;
-   pHead = pTail = new list <T> ::Node();
+    if (rhs.pHead == nullptr)
+        return;
+
+    pHead = new Node(rhs.pHead->data);
+    Node* current = pHead;
+    Node* rhsCurrent = rhs.pHead->pNext;
+
+    while (rhsCurrent != nullptr)
+    {
+        current->pNext = new Node(rhsCurrent->data);
+        current->pNext->pPrev = current;
+        current = current->pNext;
+        rhsCurrent = rhsCurrent->pNext;
+    }
+
+    pTail = current;
+    numElements = rhs.numElements;
 }
 
 /*****************************************
@@ -302,8 +338,11 @@ list <T> ::list(list& rhs)
 template <typename T>
 list <T> ::list(list <T>&& rhs)
 {
-   numElements = 99;
-   pHead = pTail = new list <T> ::Node();
+    numElements = rhs.numElements;
+    pHead = rhs.pHead;
+    pTail = rhs.pTail;
+    rhs.pHead = rhs.pTail = nullptr;
+    rhs.numElements = 0;
 }
 
 /**********************************************
@@ -368,7 +407,6 @@ void list <T> :: clear()
 template <typename T>
 void list <T> :: push_back(const T & data)
 {
-
 }
 
 template <typename T>
