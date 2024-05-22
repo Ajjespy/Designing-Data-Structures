@@ -23,6 +23,7 @@
 #include <iostream>    // for nullptr
 #include <new>         // std::bad_alloc
 #include <memory>      // for std::allocator
+#include <stdexcept>
 
 class TestList;        // forward declaration for unit tests
 class TestHash;        // to be used later
@@ -403,11 +404,17 @@ namespace custom
      * Copy one list onto another
      *     INPUT  : a list to be moved
      *     OUTPUT :
-     *     COST   : O(n) with respect to the size of the LHS
+     *     COST   : O(n) with respect to the size of the LHS 
      *********************************************/
     template <typename T>
     list <T>& list <T> :: operator = (list <T>&& rhs)
     {
+        Node* currentNode = pHead;
+
+        while (currentNode) {
+            push_back(currentNode->data);
+            currentNode = currentNode->pNext;
+        }
         return *this;
     }
 
@@ -421,6 +428,12 @@ namespace custom
     template <typename T>
     list <T>& list <T> :: operator = (list <T>& rhs)
     {
+        Node* currentNode = pHead;
+
+        while (currentNode) {
+            push_back(currentNode->data);
+            currentNode = currentNode->pNext;
+        }
         return *this;
     }
 
@@ -434,6 +447,13 @@ namespace custom
     template <typename T>
     list <T>& list <T> :: operator = (const std::initializer_list<T>& rhs)
     {
+        Node* currentNode = pHead;
+
+        while (currentNode) {
+            push_back(currentNode->data);
+            currentNode = currentNode->pNext;
+        }
+        return *this;
         return *this;
     }
 
@@ -447,7 +467,26 @@ namespace custom
     template <typename T>
     void list <T> ::clear()
     {
+        // Stragagy: loop though all the nodes, grab the next one and delete the current one.
+        Node* currentNode = pHead;
 
+        Node* TempNode;
+
+        while (currentNode != nullptr) {
+            // Save the node behind currentNode so we can delete 
+            // it after we advance current node.
+            TempNode = currentNode;
+
+            // advance currentNode to the next one in the list.
+            currentNode = currentNode->pNext;
+
+            // delete that node we saved.
+            delete TempNode;
+        }
+
+        // reset the head and tail.
+        pHead = nullptr;
+        pTail = nullptr;
     }
 
     /*********************************************
@@ -460,12 +499,72 @@ namespace custom
     template <typename T>
     void list <T> ::push_back(const T& data)
     {
+
+        // create the new node of data
+        Node* newNode = new Node(data);
+
+        // if the list is currently empty, add the new data as the only node.
+        if (numElements == 0) {
+            pHead = newNode;
+            pTail = newNode;
+
+            newNode->pPrev = nullptr;
+            newNode->pNext = nullptr;
+        }
+
+        // otherwise, insert it at the tail. 
+        else {
+            // link the old tail to the new node
+            pTail->pNext = newNode;
+
+            // link the new data to the old head
+            newNode->pPrev = pTail;
+
+            // make sure the new node has nothing before it.
+            newNode->pNext = nullptr;
+
+            // change the head.
+            pTail = newNode;
+        }
+
+        // add an element to the number of elements.
+        numElements++;
+
+       
     }
 
     template <typename T>
     void list <T> ::push_back(T&& data)
     {
+        // create the new node of data
+        Node* newNode = new Node(data);
 
+        // if the list is currently empty, add the new data as the only node.
+        if (numElements == 0) {
+            pHead = newNode;
+            pTail = newNode;
+
+            newNode->pPrev = nullptr;
+            newNode->pNext = nullptr;
+        }
+
+        // otherwise, insert it at the tail. 
+        else {
+            // link the old tail to the new node
+            pTail->pNext = newNode;
+
+            // link the new data to the old head
+            newNode->pPrev = pTail;
+
+            // make sure the new node has nothing before it.
+            newNode->pNext = nullptr;
+
+            // change the head.
+            pTail = newNode;
+        }
+
+        // add an element to the number of elements.
+        numElements++;
     }
 
     /*********************************************
@@ -478,13 +577,71 @@ namespace custom
     template <typename T>
     void list <T> ::push_front(const T& data)
     {
+        
+        // create the new node of data
+        Node* newNode = new Node(data);
+
+        // if the list is currently empty, add the new data as the only node.
+        if (numElements == 0) {
+            pHead = newNode;
+            pTail = newNode;
+
+            newNode->pPrev = nullptr;
+            newNode->pNext = nullptr;
+        }
+
+        // otherwise, insert it at the head. 
+        else {
+            // link the old head to the new node
+            pHead->pPrev = newNode;
+
+            // link the new data to the old head
+            newNode->pNext = pHead;
+
+            // make sure the new node has nothing before it.
+            newNode->pPrev = nullptr;
+
+            // change the head.
+            pHead = newNode;
+        }
+        
+        // add an element to the number of elements.
+        numElements++;
 
     }
 
     template <typename T>
     void list <T> ::push_front(T&& data)
     {
+        // create the new node of data
+        Node* newNode = new Node(data);
 
+        // if the list is currently empty, add the new data as the only node.
+        if (numElements == 0) {
+            pHead = newNode;
+            pTail = newNode;
+
+            newNode->pPrev = nullptr;
+            newNode->pNext = nullptr;
+        }
+
+        // otherwise, insert it at the head. 
+        else {
+            // link the old head to the new node
+            pHead->pPrev = newNode;
+
+            // link the new data to the old head
+            newNode->pNext = pHead;
+
+            // make sure the new node has nothing before it.
+            newNode->pPrev = nullptr;
+
+            // change the head.
+            pHead = newNode;
+        }
+
+        // add an element to the number of elements.
+        numElements++;
     }
 
 
@@ -498,7 +655,32 @@ namespace custom
     template <typename T>
     void list <T> ::pop_back()
     {
+        // only do this if the list isnt alrady empty
+        if (numElements != 0) {
+            // save a pointer to the old tail so we can delete it later.
+            Node* oldTail = pTail;
 
+            // if there is only one element, just delete it, no need to meigntaign connections.
+            if (numElements == 1) {
+                pTail = nullptr;
+                pHead = nullptr;
+            }
+            else {
+                // change the new Tail
+                pTail = pTail->pPrev;
+
+                // remove the new Tail referance to the old Tail.
+                pTail->pNext = nullptr;
+            }
+
+            // delete the old Tail.
+            delete oldTail;
+
+            // count down our number of elements.
+            numElements = numElements - 1;
+        }
+
+        
     }
 
     /*********************************************
@@ -512,6 +694,30 @@ namespace custom
     void list <T> ::pop_front()
     {
 
+        // only do this if the list isnt alrady empty
+        if (numElements != 0) {
+            // save a pointer to the old head so we can delete it later.
+            Node* oldHead = pHead;
+
+            // if there is only one element, just delete it, no need to meigntaign connections.
+            if (numElements == 1){
+                pTail = nullptr;
+                pHead = nullptr;
+            }
+            else {
+                // change the new Head
+                pHead = pHead->pNext;
+
+                // remove the new Head referance to the old Head.
+                pHead->pPrev = nullptr;
+            }
+
+            // delete the old Head.
+            delete oldHead;
+
+            // count down our number of elements.
+            numElements = numElements - 1;
+        }
     }
 
     /*********************************************
@@ -524,7 +730,14 @@ namespace custom
     template <typename T>
     T& list <T> ::front()
     {
-        return *(new T);
+        if (!pHead) {
+            static T default_instance{};
+            return default_instance;
+        }
+        else {
+            return pHead->data;
+        }
+        
     }
 
     /*********************************************
@@ -537,7 +750,14 @@ namespace custom
     template <typename T>
     T& list <T> ::back()
     {
-        return *(new T);
+        if (!pTail) {
+            static T default_instance{};
+            return default_instance;
+        }
+        else {
+            return pTail->data;
+        }
+        
     }
 
     /******************************************
