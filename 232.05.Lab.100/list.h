@@ -141,6 +141,7 @@ public:
    Node(const T &  data)  
    {
       pNext = pPrev = nullptr;
+      this->data = data;
    }
    Node(      T && data)  
    {
@@ -189,11 +190,20 @@ public:
    // equals, not equals operator
    bool operator == (const iterator & rhs) const { return true; }
    bool operator != (const iterator & rhs) const { return true; }
+   iterator & operator = (const iterator & rhs)
+   {
+       p = rhs.p;
+       return *this;
+   }
+   
+   // equals, not equals operator
+   bool operator != (const iterator& rhs) const { return p != rhs.p; }
 
    // dereference operator, fetch a node
    T & operator * ()
    {
       return *(new T);
+       return p->data;
    }
 
    // postfix increment
@@ -206,18 +216,25 @@ public:
    iterator & operator ++ ()
    {
       return *this;
+       if (p)
+           p = p->pNext;
    }
    
    // postfix decrement
    iterator operator -- (int postfix)
    {
       return *this;
+       iterator tmp = *this;
+       if (p)
+           p = p->pPrev;
    }
 
    // prefix decrement
    iterator & operator -- ()
    {
       return *this;
+           p = p->pPrev;
+       return *this;
    } 
 
    // two friends who need to access p directly
@@ -273,6 +290,15 @@ list <T> ::list(size_t num)
 {
    numElements = 99;
    pHead = pTail = new list <T> ::Node();
+    auto it = il.begin();
+    pHead = new Node(*it);
+    Node* current = pHead;
+    ++it;
+    ++numElements;
+    for (; it != il.end(); ++it)
+    }
+
+    pTail = current;
 }
 
 /*****************************************
@@ -293,6 +319,8 @@ list <T> ::list(list& rhs)
 {
    numElements = 99;
    pHead = pTail = new list <T> ::Node();
+        return;
+
 }
 
 /*****************************************
@@ -304,6 +332,11 @@ list <T> ::list(list <T>&& rhs)
 {
    numElements = 99;
    pHead = pTail = new list <T> ::Node();
+    numElements = rhs.numElements;
+    pHead = rhs.pHead;
+    pTail = rhs.pTail;
+    rhs.pHead = rhs.pTail = nullptr;
+    rhs.numElements = 0;
 }
 
 /**********************************************
