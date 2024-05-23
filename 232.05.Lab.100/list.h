@@ -855,6 +855,10 @@ namespace custom
     typename list <T> ::iterator list <T> ::insert(list <T> ::iterator it,
         const T& data)
     {
+        // we start by createing a new node with the data
+
+        Node* newNode = new Node(data);
+
         return end();
     }
 
@@ -875,12 +879,43 @@ namespace custom
     template <typename T>
     void swap(list <T>& lhs, list <T>& rhs)
     {
-
+       // no need to rewrite this code.
+        lhs.swap(rhs);
     }
 
     template <typename T>
     void list<T>::swap(list <T>& rhs)
     {
+        //if the target list is empty, clear the current list.
+        if (rhs.empty())
+        {
+            this->clear();
+        }
+
+        // if this lis is not empty make it so.
+        if (!this->empty())
+        {
+            this->clear();
+        }
+
+        // create a current node var. initilize it with the targets's head.
+        Node* currentNode = rhs.pHead;
+
+        // set this lists head as the current node.
+        pHead = currentNode;
+
+        // loop though all the nodes in the target list.
+        while (currentNode) {
+            // insert the current nodes data in to this list.
+            push_back(currentNode->data);
+
+            // advance the current node.
+            currentNode = currentNode->pNext;
+        }
+
+        // verify that the numElements are the same.
+        // this should always be true because push_back updates numElements.
+        assert(numElements == rhs.numElements); 
     }
 
     //#endif

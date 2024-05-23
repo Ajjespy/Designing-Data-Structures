@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{6C03E98E-5847-4D1E-860C-3FB4CCFE088F}|LabList.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.05.Lab.100\\list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{6C03E98E-5847-4D1E-860C-3FB4CCFE088F}|LabList.vcxproj|solutionrelative:list.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C03E98E-5847-4D1E-860C-3FB4CCFE088F}|LabList.vcxproj|C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.05.Lab.100\\testList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{6C03E98E-5847-4D1E-860C-3FB4CCFE088F}|LabList.vcxproj|solutionrelative:testList.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "testList.h",
+              "DocumentMoniker": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.05.Lab.100\\testList.h",
+              "RelativeDocumentMoniker": "testList.h",
+              "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.05.Lab.100\\testList.h",
+              "RelativeToolTip": "testList.h",
+              "ViewState": "AQIAAMUGAAAAAAAAAAAAANMGAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-23T22:16:20.168Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +41,7 @@
               "RelativeDocumentMoniker": "list.h",
               "ToolTip": "C:\\Users\\evanriker\\Desktop\\Designing Data Structures\\Designing-Data-Structures\\232.05.Lab.100\\list.h",
               "RelativeToolTip": "list.h",
-              "ViewState": "AQIAAKIBAAAAAAAAAAAiwLIBAAAPAAAA",
+              "ViewState": "AQIAAEsDAAAAAAAAAAAIwJoDAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-05-22T20:54:02.098Z",
               "EditorCaption": ""
