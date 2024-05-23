@@ -815,7 +815,32 @@ namespace custom
     template <typename T>
     typename list <T> ::iterator  list <T> ::erase(const list <T> ::iterator& it)
     {
-        return end();
+        // Check if the iterator is valid and not pointing to end()
+        if (it == end())
+            return end();
+
+        // Get the node to erase
+        Node* nodeToDelete = it.p;
+
+        // Create an iterator to the next node
+        iterator nextIt = iterator(nodeToDelete->pNext);
+
+        // Update pointers
+        if (nodeToDelete->pPrev)
+            nodeToDelete->pPrev->pNext = nodeToDelete->pNext;
+        else
+            pHead = nodeToDelete->pNext; // Node is head
+
+        if (nodeToDelete->pNext)
+            nodeToDelete->pNext->pPrev = nodeToDelete->pPrev;
+        else
+            pTail = nodeToDelete->pPrev; // Node is tail
+
+        // Delete the node
+        delete nodeToDelete;
+        --numElements;
+
+        return nextIt;
     }
 
     /******************************************
