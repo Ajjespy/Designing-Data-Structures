@@ -409,12 +409,23 @@ namespace custom
     template <typename T>
     list <T>& list <T> :: operator = (list <T>&& rhs)
     {
-        Node* currentNode = pHead;
+        // Self-assignment check
+        if (this == &rhs)
+            return *this;
 
-        while (currentNode) {
-            push_back(currentNode->data);
-            currentNode = currentNode->pNext;
-        }
+        // Clear the current list
+        clear();
+
+        // Transfer ownership of resources from rhs to this
+        pHead = rhs.pHead;
+        pTail = rhs.pTail;
+        numElements = rhs.numElements;
+
+        // Reset rhs
+        rhs.pHead = nullptr;
+        rhs.pTail = nullptr;
+        rhs.numElements = 0;
+
         return *this;
     }
 
@@ -428,12 +439,26 @@ namespace custom
     template <typename T>
     list <T>& list <T> :: operator = (list <T>& rhs)
     {
-        Node* currentNode = pHead;
+        if (rhs.empty())
+        {
+            this->clear();
+            return *this;
+        }
+
+        if (!this->empty())
+        {
+            this->clear();
+        }
+        
+        Node* currentNode = rhs.pHead;
+        pHead = currentNode;
 
         while (currentNode) {
             push_back(currentNode->data);
             currentNode = currentNode->pNext;
         }
+
+        numElements = rhs.numElements;
         return *this;
     }
 
@@ -447,13 +472,32 @@ namespace custom
     template <typename T>
     list <T>& list <T> :: operator = (const std::initializer_list<T>& rhs)
     {
-        Node* currentNode = pHead;
-
-        while (currentNode) {
-            push_back(currentNode->data);
-            currentNode = currentNode->pNext;
+        if (rhs.size() == 0)
+        {
+            this->clear();
+            return *this;
         }
-        return *this;
+
+        if (!this->empty())
+        {
+            this->clear();
+        }
+
+        auto it = rhs.begin();
+        pHead = new Node(*it);
+        Node* current = pHead;
+        ++it;
+
+        for (; it != rhs.end(); ++it)
+        {
+
+            current->pNext = new Node(*it);
+            current->pNext->pPrev = current;
+            current = current->pNext;
+        }
+
+        pTail = current;
+        numElements = rhs.size();
         return *this;
     }
 
@@ -485,6 +529,7 @@ namespace custom
         }
 
         // reset the head and tail.
+        numElements = 0;
         pHead = nullptr;
         pTail = nullptr;
     }
