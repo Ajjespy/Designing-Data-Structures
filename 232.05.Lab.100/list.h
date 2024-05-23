@@ -775,10 +775,12 @@ namespace custom
     template <typename T>
     T& list <T> ::front()
     {
+        // if the head doesnt exist, return a dafault instance of T
         if (!pHead) {
             static T default_instance{};
             return default_instance;
         }
+        // otherwise return head's data.
         else {
             return pHead->data;
         }
@@ -795,10 +797,12 @@ namespace custom
     template <typename T>
     T& list <T> ::back()
     {
+        // if the tail doesnt exist, return a dafault instance of T
         if (!pTail) {
             static T default_instance{};
             return default_instance;
         }
+        // otherwise return tail's data.
         else {
             return pTail->data;
         }
@@ -806,7 +810,7 @@ namespace custom
     }
 
     /******************************************
-     * LIST :: REMOVE
+     * LIST :: REMOVE (erase)
      * remove an item from the middle of the list
      *     INPUT  : an iterator to the item being removed
      *     OUTPUT : iterator to the new location
@@ -816,8 +820,10 @@ namespace custom
     typename list <T> ::iterator  list <T> ::erase(const list <T> ::iterator& it)
     {
         // Check if the iterator is valid and not pointing to end()
-        if (it == end())
+        if (it == end()) {
             return end();
+        }
+            
 
         // Get the node to erase
         Node* nodeToDelete = it.p;
@@ -827,11 +833,13 @@ namespace custom
 
         // Update pointers
         if (nodeToDelete->pPrev)
+            // link the node behind us to the node in frount of us
             nodeToDelete->pPrev->pNext = nodeToDelete->pNext;
         else
             pHead = nodeToDelete->pNext; // Node is head
 
         if (nodeToDelete->pNext)
+            // link the node in frount of us to the node behind us.
             nodeToDelete->pNext->pPrev = nodeToDelete->pPrev;
         else
             pTail = nodeToDelete->pPrev; // Node is tail
@@ -855,18 +863,108 @@ namespace custom
     typename list <T> ::iterator list <T> ::insert(list <T> ::iterator it,
         const T& data)
     {
-        // we start by createing a new node with the data
+        // pull the target node out of the iterator
+        Node* targetNode = it.p;
 
-        Node* newNode = new Node(data);
+        
+        // make sure the target node exits.
+        if (targetNode) {
 
-        return end();
+            Node* newNode = new Node(data);
+            // establish wether the targetNode is a member of this list.
+            Node* currentNode = pHead;
+            bool contains = false;
+            while (currentNode) {
+
+                if (currentNode == targetNode) {
+                    contains = true;
+                }
+
+                currentNode = currentNode->pNext;
+            }
+            
+            // if the target node is not a member of this list we cannot add it to this list.
+            if (contains) {
+                // if the targetNode is not the head.
+                if (targetNode->pPrev) {
+                    targetNode->pPrev->pNext = newNode;
+                    newNode->pPrev = targetNode->pPrev;
+
+                }
+                else {
+                    pHead = newNode;
+                }
+
+                newNode->pNext = targetNode;
+                targetNode->pPrev = newNode;
+
+                numElements++;
+
+                // return a pointer to the new node.
+                return iterator(newNode);
+            }
+        }
+
+        // if the target node does not exist, push back.
+        else {
+            push_back(data);
+
+            return iterator(pTail);
+        }
     }
 
     template <typename T>
     typename list <T> ::iterator list <T> ::insert(list <T> ::iterator it,
         T&& data)
     {
-        return end();
+        // pull the target node out of the iterator
+        Node* targetNode = it.p;
+
+
+        // make sure the target node exits.
+        if (targetNode) {
+
+            Node* newNode = new Node(data);
+            // establish wether the targetNode is a member of this list.
+            Node* currentNode = pHead;
+            bool contains = false;
+            while (currentNode) {
+
+                if (currentNode == targetNode) {
+                    contains = true;
+                }
+
+                currentNode = currentNode->pNext;
+            }
+
+            // if the target node is not a member of this list we cannot add it to this list.
+            if (contains) {
+                // if the targetNode is not the head.
+                if (targetNode->pPrev) {
+                    targetNode->pPrev->pNext = newNode;
+                    newNode->pPrev = targetNode->pPrev;
+
+                }
+                else {
+                    pHead = newNode;
+                }
+
+                newNode->pNext = targetNode;
+                targetNode->pPrev = newNode;
+
+                numElements++;
+
+                // return a pointer to the new node.
+                return iterator(newNode);
+            }
+        }
+
+        // if the target node does not exist, push back.
+        else {
+            push_back(data);
+
+            return iterator(pTail);
+        }
     }
 
     /**********************************************

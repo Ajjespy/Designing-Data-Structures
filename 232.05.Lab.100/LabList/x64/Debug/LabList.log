@@ -23,4 +23,6 @@ C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\2
 C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(203,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
   (compiling source file 'testList.cpp')
   
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\list.h(968,1): warning C4715: 'custom::list<int>::insert': not all control paths return a value
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\list.h(914,1): warning C4715: 'custom::list<int>::insert': not all control paths return a value
   LabList.vcxproj -> C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\x64\Debug\LabList.exe
