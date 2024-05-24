@@ -84,9 +84,9 @@ namespace custom
         //
 
         class  iterator;
-        iterator begin() { return iterator(); }
-        iterator rbegin() { return iterator(); }
-        iterator end() { return iterator(); }
+        iterator begin() { return iterator(pHead); }
+        iterator rbegin() { return iterator(pTail); }
+        iterator end() { return iterator(pTail); }
 
         //
         // Access
@@ -816,31 +816,41 @@ namespace custom
     typename list <T> ::iterator  list <T> ::erase(const list <T> ::iterator& it)
     {
         // Check if the iterator is valid and not pointing to end()
-        if (it == end())
-            return end();
-
+        if (!it.p)
+            return it;
+             
         // Get the node to erase
         Node* nodeToDelete = it.p;
+        Node* nodeToReturn = nullptr;
 
         // Create an iterator to the next node
-        iterator nextIt = iterator(nodeToDelete->pNext);
+        //iterator nextIt = iterator(nodeToDelete->pNext);
 
         // Update pointers
         if (nodeToDelete->pPrev)
             nodeToDelete->pPrev->pNext = nodeToDelete->pNext;
         else
+        {
             pHead = nodeToDelete->pNext; // Node is head
-
+            nodeToReturn = pHead;
+        }
         if (nodeToDelete->pNext)
             nodeToDelete->pNext->pPrev = nodeToDelete->pPrev;
         else
+        {
             pTail = nodeToDelete->pPrev; // Node is tail
+            nodeToReturn = pTail;
+        }
 
+        if (!nodeToReturn)
+        {
+            nodeToReturn = nodeToDelete->pNext;
+        }
         // Delete the node
         delete nodeToDelete;
         --numElements;
 
-        return nextIt;
+        return iterator(nodeToReturn);
     }
 
     /******************************************
@@ -855,18 +865,118 @@ namespace custom
     typename list <T> ::iterator list <T> ::insert(list <T> ::iterator it,
         const T& data)
     {
-        // we start by createing a new node with the data
+        // we start by creating a new node with the data
 
         Node* newNode = new Node(data);
 
-        return end();
+        Node* targetNode = it.p;
+        Node* previousNode;
+        
+
+        // Update pointers
+        if (targetNode)
+        {
+            if (targetNode->pPrev)
+            {
+                //set previous
+                previousNode = targetNode->pPrev;
+
+                //set nodes before and after to point to the newNode
+                previousNode->pNext = newNode;
+                targetNode->pPrev = newNode;
+
+                //set newNode to point to the ones before and after
+                newNode->pPrev = previousNode;
+                newNode->pNext = targetNode;
+            }
+            else
+            {
+                newNode->pNext = pHead;
+                pHead->pPrev = newNode;
+                pHead = newNode; // Node is head
+            }
+        }
+
+        else
+        {
+            //nullptr with elements in the list defaults to the end
+            if (numElements > 0)
+            {
+                pTail->pNext = newNode;
+                newNode->pPrev = pTail;
+                pTail = newNode;
+            }
+            //if given an empty list
+            else
+            {
+                pHead = newNode;
+                pTail = newNode;
+            }
+            
+        }
+
+        numElements++;
+
+        return iterator(newNode);
     }
 
     template <typename T>
     typename list <T> ::iterator list <T> ::insert(list <T> ::iterator it,
         T&& data)
     {
-        return end();
+        // we start by creating a new node with the data
+
+        Node* newNode = new Node(data);
+
+        Node* targetNode = it.p;
+        Node* previousNode;
+
+
+        // Update pointers
+        if (targetNode)
+        {
+            if (targetNode->pPrev)
+            {
+                //set previous
+                previousNode = targetNode->pPrev;
+
+                //set nodes before and after to point to the newNode
+                previousNode->pNext = newNode;
+                targetNode->pPrev = newNode;
+
+                //set newNode to point to the ones before and after
+                newNode->pPrev = previousNode;
+                newNode->pNext = targetNode;
+            }
+            else
+            {
+                newNode->pNext = pHead;
+                pHead->pPrev = newNode;
+                pHead = newNode; // Node is head
+            }
+        }
+
+        else
+        {
+            //nullptr with elements in the list defaults to the end
+            if (numElements > 0)
+            {
+                pTail->pNext = newNode;
+                newNode->pPrev = pTail;
+                pTail = newNode;
+            }
+            //if given an empty list
+            else
+            {
+                pHead = newNode;
+                pTail = newNode;
+            }
+
+        }
+
+        numElements++;
+
+        return iterator(newNode);
     }
 
     /**********************************************
@@ -887,6 +997,22 @@ namespace custom
     void list<T>::swap(list <T>& rhs)
     {
         //if the target list is empty, clear the current list.
+        //if (rhs.empty() && !this->empty())
+        //{
+        //    rhs.pHead = this->pHead;
+        //    rhs.pTail = this->pTail;
+        //    rhs.numElements = this->numElements;
+        //    this->clear();
+        //}
+
+        //// if this lis is not empty make it so.
+        //if (this->empty() && !rhs.empty())
+        //{
+        //    this->pHead = rhs.pHead;
+        //    this->pTail = rhs.pTail;
+        //    this->numElements = rhs.numElements;
+        //    rhs.clear();
+        //}
         if (rhs.empty())
         {
             this->clear();
@@ -915,7 +1041,7 @@ namespace custom
 
         // verify that the numElements are the same.
         // this should always be true because push_back updates numElements.
-        assert(numElements == rhs.numElements); 
+        //assert(numElements == rhs.numElements); 
     }
 
     //#endif
