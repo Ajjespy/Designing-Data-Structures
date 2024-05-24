@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/Designing-Data-Structures/v17/.wsuo
+/.vs/Designing-Data-Structures/v17/DocumentLayout.json
+/232.05.Lab.100/.vs/LabList/FileContentIndex/355df671-9998-4a55-972f-3dd550580b12.vsidx
+/232.05.Lab.100/.vs/LabList/FileContentIndex/d94fb663-7604-4100-8756-b509f5fb8912.vsidx
+/232.05.Lab.100/.vs/LabList/v17/Browse.VC.db
+/232.05.Lab.100/.vs/LabList/v17/Browse.VC.db-shm
+/232.05.Lab.100/.vs/LabList/v17/Browse.VC.db-wal
+/232.05.Lab.100/.vs/LabList/v17/Browse.VC.opendb
+/232.05.Lab.100/.vs/LabList/v17/ipch/AutoPCH/6be93323a8fed43a/TESTLIST.ipch
+/232.05.Lab.100/.vs/LabList/v17/ipch/AutoPCH/8fee715634697709/DELETE_SCALAR.ipch
