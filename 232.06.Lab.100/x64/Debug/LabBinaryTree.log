@@ -1,0 +1,29 @@
+﻿  testBNode.cpp
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(87,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(88,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(89,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(107,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(108,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(109,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(129,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(130,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\testBNode.h(131,20): warning C4312: 'type cast': conversion from 'unsigned int' to 'BNode<int> *' of greater size
+  (compiling source file 'testBNode.cpp')
+  
+  LabBinaryTree.vcxproj -> C:\Users\kingl\OneDrive\Documents\Designing-Data-Structures\232.06.Lab.100\x64\Debug\LabBinaryTree.exe
