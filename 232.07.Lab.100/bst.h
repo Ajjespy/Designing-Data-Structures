@@ -123,6 +123,8 @@ private:
    class BNode;
    BNode * root;              // root node of the binary search tree
    size_t numElements;        // number of elements currently in the tree
+   BNode* copyBNode(BNode* src, BNode* parent); // Helper Function to help copy nodes from one tree to the next
+   void deleteBNode(BNode* node); // Helper function to help delete every node in the bst
 };
 
 
@@ -248,6 +250,7 @@ private:
 
  /*********************************************
   * BST :: DEFAULT CONSTRUCTOR
+  * Initialize a tree with no elements and a null root
   ********************************************/
 template <typename T>
 BST <T> ::BST() : root(nullptr), numElements(0) {}
@@ -259,8 +262,41 @@ BST <T> ::BST() : root(nullptr), numElements(0) {}
 template <typename T>
 BST <T> :: BST ( const BST<T>& rhs) 
 {
-   numElements = 99;
-   root = new BNode;
+    // Initialize the new tree
+    numElements = rhs.numElements;
+    root = nullptr;
+
+    // Use copyBNode function to recursively copy the nodes from the rhs
+    if (rhs.root != nullptr)
+    {
+        root = copyBNode(rhs.root, nullptr);
+    }
+}
+
+/********************************************
+ * BST :: COPY BNODE
+ * Recursively copy a node and its children
+ ********************************************/
+template <typename T>
+typename BST<T>::BNode* BST<T>::copyBNode(BNode* src, BNode* parent)
+{
+    // If the src node is empty, there's nothing to copy. Recursive loop will stop.
+    if (src == nullptr)
+    {
+        return nullptr;
+    }
+
+    // Create a new node with the same data as the src
+    BNode* newNode = new BNode(src->data);
+    newNode->pParent = parent;
+    newNode->isRed = src->isRed;
+
+    // Using recursion, copy the left and right children
+    newNode->pLeft = copyBNode(src->pLeft, newNode);
+    newNode->pRight = copyBNode(src->pRight, newNode);
+
+    // Return the newNode, which is now the root of the copied BST
+    return newNode;
 }
 
 /*********************************************
@@ -270,8 +306,13 @@ BST <T> :: BST ( const BST<T>& rhs)
 template <typename T>
 BST <T> :: BST(BST <T> && rhs) 
 {
-   numElements = 99;
-   root = new BNode;
+    // Transfer root and numElements from rhs to this BST
+    root = rhs.root;
+    numElements = rhs.numElements;
+
+    // Clear rhs BST
+    rhs.root = nullptr;
+    rhs.numElements = 0;
 }
 
 /*********************************************
@@ -279,10 +320,66 @@ BST <T> :: BST(BST <T> && rhs)
  * Create a BST from an initializer list
  ********************************************/
 template <typename T>
-BST <T> ::BST(const std::initializer_list<T>& il)
+BST <T> ::BST(const std::initializer_list<T>& il) : root(nullptr), numElements(0)
 {
-   numElements = 99;
-   root = new BNode;
+    // Iterate through each item in the initializer list
+    for (const T& element : il)
+    {
+        // If the root hasn't been initalized yet, intialize it with the first item from the list.
+        if (root == nullptr)
+        {
+            root = new BNode(element);
+        }
+        else
+        {
+            // Initialize a pointer to the root
+            BNode* currentNode = root;
+
+            // Begin adding nodes to the tree
+            while (currentNode != nullptr)
+            {
+                // A node should be added to the left if the current element in the list is less than the root
+                if (element < currentNode->data)
+                {
+                    // Check if the current node has no node on the left
+                    if (currentNode->pLeft == nullptr)
+                    {
+                        // Create and link a node to the left of the currentNode using the element from the il
+                        currentNode->pLeft = new BNode(element);
+
+                        // Link the curerntNode as the parent to the new node that was just created
+                        currentNode->pLeft->pParent = currentNode;
+                        break;
+                    }
+                    else
+                    {
+                        // Advance to the next node on the left
+                        currentNode = currentNode->pLeft;
+                    }
+                }
+                else // A node will be added to the right side of the bst
+                {
+                    // Check if the current node has no node to the right
+                    if (currentNode->pRight == nullptr)
+                    {
+                        // Create and link a node to the right of the currentNode using the element from il
+                        currentNode->pRight = new BNode(element);
+
+                        // LInk the currentNode as the parent to the new node that was just created
+                        currentNode->pRight->pParent = currentNode;
+                        break;
+                    }
+                    else
+                    {
+                        // Advance to the next node on the right
+                        currentNode = currentNode->pRight;
+                    }
+                }
+            }
+        }
+        // Update the numElements count after a node is added to the bst
+        numElements++;
+    }
 }
 
 /*********************************************
@@ -291,9 +388,32 @@ BST <T> ::BST(const std::initializer_list<T>& il)
 template <typename T>
 BST <T> :: ~BST()
 {
+    // Use deleteBnode to delete all nodes
+    deleteBNode(root);
 
+    // Reset root and numElements to nullptr and 0
+    root = nullptr;
+    numElements = 0;
 }
 
+/**********************************************
+ * BST :: DELETE BNODE
+ * Recursively delete nodes in the bst
+ **********************************************/
+template <typename T>
+void BST<T>::deleteBNode(BNode* node)
+{
+    // If the node to be deleted is already deleted, the recusive loop should stop
+    if (node == nullptr)
+        return;
+
+    // Recursively delete the right and left children
+    deleteBNode(node->pLeft);
+    deleteBNode(node->pRight);
+
+    // Delete the current node
+    delete node;
+}
 
 /*********************************************
  * BST :: ASSIGNMENT OPERATOR
@@ -302,6 +422,23 @@ BST <T> :: ~BST()
 template <typename T>
 BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 {
+   // Check for self-assignment
+   if (this != &rhs)
+   {
+       // Clear the contents of the bst
+       clear();
+
+       numElements = rhs.numElements;
+
+       // Copy the bst from the rhs, as long as it is not null
+       if (rhs.root != nullptr)
+       {
+           // Copy the nodes from the rhs using copyBNode
+           root = copyBNode(rhs.root, nullptr);
+       }
+   }
+
+   // Return the new bst
    return *this;
 }
 
@@ -370,6 +507,12 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
 template <typename T>
 void BST <T> ::clear() noexcept
 {
+    // Use deleteBNode to delete all nodes from the bst
+    deleteBNode(root);
+
+    // Reset root and num elements to nullptr and 0
+    root = nullptr;
+    numElements = 0;
 
 }
 
