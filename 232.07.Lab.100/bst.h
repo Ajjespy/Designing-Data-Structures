@@ -449,7 +449,59 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
 template <typename T>
 BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 {
-   return *this;
+    // Clear the current contents of the tree
+    clear();
+
+    // Begin inserting each element from the il into the tree
+    for (const T& element : il)
+    {
+        // Begin by inserting the root
+        if (root == nullptr)
+        {
+            root = new BNode(element);
+            ++numElements;
+        }
+        else
+        {
+            // Initialize pointers to current and parent nodes, starting at the root
+            BNode* current = root;
+            BNode* parent = nullptr;
+
+            // Begin traversing the tree to find the right position for the element
+            while (current != nullptr)
+            {
+                // Update the parent pointer
+                parent = current;
+                if (element < current->data)
+                {
+                    // Move to the left child
+                    current = current->pLeft;
+                }
+                else
+                {
+                    // Move to the right child
+                    current = current->pRight;
+                }
+            }
+
+            // Insert the new node as the left or right child of the parent
+            if (element < parent->data)
+            {
+                // Create a new left child node and link it
+                parent->pLeft = new BNode(element);
+                parent->pLeft->pParent = parent;
+            }
+            else
+            {
+                // Create a new right child node and link it
+                parent->pRight = new BNode(element);
+                parent->pRight->pParent = parent;
+            }
+            // Increment the number of elements after adding a node
+            ++numElements;
+        }
+    }
+    return *this;
 }
 
 /*********************************************
@@ -459,7 +511,21 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
 template <typename T>
 BST <T> & BST <T> :: operator = (BST <T> && rhs)
 {
-   return *this;
+    // Check for self assignment
+    if (this != &rhs)
+    {
+        // Clear the current contents of the tree
+        clear();
+
+        // Move resources from rhs to this
+        root = rhs.root;
+        numElements = rhs.numElements;
+
+        // Leave rhs emtpy
+        rhs.root = nullptr;
+        rhs.numElements = 0;
+    }
+    return *this;
 }
 
 /*********************************************
@@ -469,7 +535,11 @@ BST <T> & BST <T> :: operator = (BST <T> && rhs)
 template <typename T>
 void BST <T> :: swap (BST <T>& rhs)
 {
+    // Swap the root pointers of the two trees
+    std::swap(root, rhs.root);
 
+    // Swap the numElements of the two trees
+    std::swap(numElements, rhs.numElements);
 }
 
 /*****************************************************
@@ -523,7 +593,17 @@ void BST <T> ::clear() noexcept
 template <typename T>
 typename BST <T> :: iterator custom :: BST <T> :: begin() const noexcept
 {
-   return end();
+    // Initialize a pointer to the root
+    BNode* current = root;
+
+    // Traverse the tree to get to the left most node
+    while (current && current->pLeft != nullptr)
+    {
+        current = current->pLeft;
+    }
+
+    // Return an iterator pointing to the left most node
+    return iterator(current);
 }
 
 
