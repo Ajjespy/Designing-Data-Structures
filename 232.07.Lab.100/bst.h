@@ -114,8 +114,8 @@ public:
    // Status
    //
 
-   bool   empty() const noexcept { return true; }
-   size_t size()  const noexcept { return 99;   }
+   bool   empty() const noexcept { return numElements == 0; }
+   size_t size()  const noexcept { return numElements; }
    
 
 private:
@@ -233,7 +233,7 @@ public:
    friend BST <T> :: iterator BST <T> :: erase(iterator & it);
 
 private:
-   
+
     // the node
     BNode * pNode;
 };
@@ -485,17 +485,17 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
             }
 
             // Insert the new node as the left or right child of the parent
-            if (element < parent->data)
-            {
-                // Create a new left child node and link it
-                parent->pLeft = new BNode(element);
-                parent->pLeft->pParent = parent;
-            }
-            else
+            if (element > parent->data)
             {
                 // Create a new right child node and link it
                 parent->pRight = new BNode(element);
                 parent->pRight->pParent = parent;
+            }
+            else
+            {
+                // Create a new left child node and link it
+                parent->pLeft = new BNode(element);
+                parent->pLeft->pParent = parent;
             }
             // Increment the number of elements after adding a node
             ++numElements;
@@ -549,15 +549,123 @@ void BST <T> :: swap (BST <T>& rhs)
 template <typename T>
 std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, bool keepUnique)
 {
-   std::pair<iterator, bool> pairReturn(end(), false);
-   return pairReturn;
+    // Initialize the return value as a pair with end() and false]
+    std::pair<iterator, bool> pairReturn(end(), false);
+
+    // If the tree is empty, create a new root node
+    if (root == nullptr)
+    {
+        root = new BNode(t);
+        ++numElements;
+
+        // Update the return pair
+        pairReturn.first = iterator(root);
+        pairReturn.second = true;
+        return pairReturn;
+    }
+
+    // Start at the root and traverse the tree to find the insertion point
+    BNode* current = root;
+    BNode* parent = nullptr;
+    while (current != nullptr)
+    {
+        parent = current;
+        if (t < current->data)
+        {
+            current = current->pLeft;
+        }
+        else if (current->data < t)
+        {
+            current = current->pRight;
+        }
+        else
+        {
+            // If duplicates are allowed and and a node with the same value is found
+            if (keepUnique)
+            {
+                // Update the return pair
+                pairReturn.first = iterator(current);
+                return pairReturn;
+            }
+            else {
+                current = current->pRight; // Duplicates are moved to the right
+            }
+        }
+    }
+
+    // Create a new node and attach it to the parent
+    BNode* newNode = new BNode(t);
+    if (t < parent->data)
+    {
+        parent->pLeft = newNode;
+    }
+    else {
+        parent->pRight = newNode;
+    }
+
+    newNode->pParent = parent;
+
+    ++numElements;
+    pairReturn.first = iterator(newNode);
+    pairReturn.second = true;
+    return pairReturn;
 }
 
 template <typename T>
 std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepUnique)
 {
-   std::pair<iterator, bool> pairReturn(end(), false);
-   return pairReturn;
+    // Initialize the return value as a pair with end() and false
+    std::pair<iterator, bool> pairReturn(end(), false);
+
+    // If the tree is empty, create a new root node
+    if (root == nullptr) {
+        root = new BNode(std::move(t));
+        ++numElements;
+        pairReturn.first = iterator(root);
+        pairReturn.second = true;
+        return pairReturn;
+    }
+
+    // Comparator object
+    std::less<T> less;
+
+    // Start at the root and traverse the tree to find the insertion point
+    BNode* current = root;
+    BNode* parent = nullptr;
+    while (current != nullptr) {
+        parent = current;
+        if (less(t, current->data)) { // Use std::less for comparison
+            current = current->pLeft;
+        }
+        else if (less(current->data, t)) { // Use std::less for comparison
+            current = current->pRight;
+        }
+        else {
+            // If duplicates are not allowed and we find a node with the same value
+            if (keepUnique) {
+                pairReturn.first = iterator(current);
+                return pairReturn;
+            }
+            else {
+                current = current->pRight; // For duplicates, move to the right
+            }
+        }
+    }
+
+    // Create a new node and attach it to the parent
+    BNode* newNode = new BNode(std::move(t));
+    if (less(t, parent->data)) {
+        parent->pLeft = newNode;
+    }
+    else {
+        parent->pRight = newNode;
+    }
+    newNode->pParent = parent;
+
+    ++numElements;
+    pairReturn.first = iterator(newNode);
+    pairReturn.second = true;
+    return pairReturn;
 }
 
 /*************************************************
@@ -567,7 +675,7 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
 template <typename T>
 typename BST <T> ::iterator BST <T> :: erase(iterator & it)
 {  
-   return end();
+    return end();
 }
 
 /*****************************************************
@@ -614,7 +722,29 @@ typename BST <T> :: iterator custom :: BST <T> :: begin() const noexcept
 template <typename T>
 typename BST <T> :: iterator BST<T> :: find(const T & t)
 {
-   return end();
+    // Initialize a pointer to the root
+    BNode* current = root;
+
+    // Traverse through the tree to find the node with the value t
+    while (current != nullptr)
+    {
+        // If the current node has the value t, return an iterator to it
+        if (t == current->data)
+        {
+            return iterator(current);
+        }
+        else if (t < current->data) // If t is less than the current node's value, move to the left child 
+        {
+            current = current->pLeft;
+        }
+        else
+        {
+            current = current->pRight; // If t is greater than the current node's value, move to the right child
+        }
+    }
+
+    // if the value is not found, return an iterator to nulllptr
+    return iterator(nullptr);
 }
 
 /******************************************************

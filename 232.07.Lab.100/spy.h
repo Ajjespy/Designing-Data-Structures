@@ -147,6 +147,28 @@ public:
       else
          return false;
    }
+
+   // a null value is assumed to be the smallest value
+   bool operator>(const Spy& rhs) const
+   {
+       // Check if the current object is empty
+       if (empty())
+       {
+           // If the current object is empty and rhs is not, return true
+           return !rhs.empty();
+       }
+       // Check if rhs is empty
+       else if (rhs.empty())
+       {
+           // If rhs is empty and the current object is not, return false
+           return false;
+       }
+       else
+       {
+           // Compare the values stored in the current object and rhs
+           return get() > rhs.get();
+       }
+   }
    
    // reset the counters for a new test
    static void reset()
