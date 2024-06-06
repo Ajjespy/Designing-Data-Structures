@@ -552,6 +552,10 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
     // Initialize the return value as a pair with end() and false]
     std::pair<iterator, bool> pairReturn(end(), false);
 
+    //Initialize flags for inserting left or right
+    bool insertRight = false;
+    bool insertLeft = false;
+
     // If the tree is empty, create a new root node
     if (root == nullptr)
     {
@@ -573,10 +577,20 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
         if (t < current->data)
         {
             current = current->pLeft;
+            if (insertRight)
+            {
+                insertRight = false;
+            }
+            insertLeft = true;
         }
-        else if (current->data < t)
+        else if (t > current->data)
         {
             current = current->pRight;
+            if (insertLeft)
+            {
+                insertLeft = false;
+            }
+            insertRight = true;
         }
         else
         {
@@ -588,14 +602,21 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
                 return pairReturn;
             }
             else {
+
                 current = current->pRight; // Duplicates are moved to the right
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
             }
         }
     }
 
     // Create a new node and attach it to the parent
     BNode* newNode = new BNode(t);
-    if (t < parent->data)
+
+    if (insertLeft)
     {
         parent->pLeft = newNode;
     }
