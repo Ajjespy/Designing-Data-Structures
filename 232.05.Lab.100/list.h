@@ -86,13 +86,13 @@ namespace custom
         class  iterator;
         iterator begin() { return iterator(pHead); }
         iterator rbegin() { return iterator(pTail); }
-        iterator end() 
-        { 
+        iterator end()
+        {
             if (pTail)
             {
                 return iterator(pTail->pNext);
             }
-            return iterator(pTail); 
+            return iterator(pTail);
         }
 
         //
@@ -411,7 +411,7 @@ namespace custom
      * Copy one list onto another
      *     INPUT  : a list to be moved
      *     OUTPUT :
-     *     COST   : O(n) with respect to the size of the LHS 
+     *     COST   : O(n) with respect to the size of the LHS
      *********************************************/
     template <typename T>
     list <T>& list <T> :: operator = (list <T>&& rhs)
@@ -456,7 +456,7 @@ namespace custom
         {
             this->clear();
         }
-        
+
         Node* currentNode = rhs.pHead;
         pHead = currentNode;
 
@@ -582,7 +582,7 @@ namespace custom
         // add an element to the number of elements.
         numElements++;
 
-       
+
     }
 
     template <typename T>
@@ -629,7 +629,7 @@ namespace custom
     template <typename T>
     void list <T> ::push_front(const T& data)
     {
-        
+
         // create the new node of data
         Node* newNode = new Node(data);
 
@@ -656,7 +656,7 @@ namespace custom
             // change the head.
             pHead = newNode;
         }
-        
+
         // add an element to the number of elements.
         numElements++;
 
@@ -732,7 +732,7 @@ namespace custom
             numElements = numElements - 1;
         }
 
-        
+
     }
 
     /*********************************************
@@ -752,7 +752,7 @@ namespace custom
             Node* oldHead = pHead;
 
             // if there is only one element, just delete it, no need to meigntaign connections.
-            if (numElements == 1){
+            if (numElements == 1) {
                 pTail = nullptr;
                 pHead = nullptr;
             }
@@ -789,7 +789,7 @@ namespace custom
         else {
             return pHead->data;
         }
-        
+
     }
 
     /*********************************************
@@ -809,7 +809,7 @@ namespace custom
         else {
             return pTail->data;
         }
-        
+
     }
 
     /******************************************
@@ -825,7 +825,7 @@ namespace custom
         // Check if the iterator is valid
         if (!it.p)
             return it;
-             
+
         // Get the node to erase
         Node* nodeToDelete = it.p;
         // Create an iterator to the next node
@@ -846,7 +846,7 @@ namespace custom
             pTail = nodeToDelete->pPrev; // Node is tail
         }
 
-        
+
         // Delete the node
         delete nodeToDelete;
         --numElements;
@@ -873,7 +873,7 @@ namespace custom
         //set up the nodes before and after where we want the new node to be
         Node* targetNode = it.p;
         Node* previousNode;
-        
+
 
         // Update pointers
         if (targetNode)
@@ -914,7 +914,7 @@ namespace custom
                 pHead = newNode;
                 pTail = newNode;
             }
-            
+
         }
 
         numElements++;
@@ -991,7 +991,7 @@ namespace custom
     template <typename T>
     void swap(list <T>& lhs, list <T>& rhs)
     {
-       // no need to rewrite this code.
+        // no need to rewrite this code.
         lhs.swap(rhs);
     }
 
@@ -1000,7 +1000,7 @@ namespace custom
     {
         //create placeholders
         Node* tempHead = rhs.pHead;
-        Node* tempTail = rhs.pTail; 
+        Node* tempTail = rhs.pTail;
         size_t tempElem = rhs.numElements;
 
         //move left to right
@@ -1012,7 +1012,7 @@ namespace custom
         this->pHead = tempHead;
         this->pTail = tempTail;
         this->numElements = tempElem;
-}
+    }
 
     //#endif
 }; // namespace custom

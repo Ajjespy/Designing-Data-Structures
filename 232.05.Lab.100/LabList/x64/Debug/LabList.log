@@ -1,26 +1,10 @@
 ﻿  testList.cpp
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(135,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(136,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(149,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(150,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(163,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(164,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(202,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\testList.h(203,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
-  (compiling source file 'testList.cpp')
-  
-  LabList.vcxproj -> C:\Users\ajjes\source\repos\Designing-Data-Structures\232.05.Lab.100\x64\Debug\LabList.exe
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(135,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(136,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(149,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(150,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(163,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(164,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(202,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\testList.h(203,17): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::list<int>::Node *' of greater size
+  LabList.vcxproj -> C:\Users\evanriker\Desktop\Designing Data Structures\Designing-Data-Structures\232.05.Lab.100\x64\Debug\LabList.exe
