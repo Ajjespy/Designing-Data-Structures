@@ -86,7 +86,14 @@ namespace custom
         class  iterator;
         iterator begin() { return iterator(pHead); }
         iterator rbegin() { return iterator(pTail); }
-        iterator end() { return iterator(pTail); }
+        iterator end() 
+        { 
+            if (pTail)
+            {
+                return iterator(pTail->pNext);
+            }
+            return iterator(pTail); 
+        }
 
         //
         // Access
@@ -516,7 +523,7 @@ namespace custom
 
         Node* TempNode;
 
-        while (currentNode != nullptr) {
+        while (currentNode) {
             // Save the node behind currentNode so we can delete 
             // it after we advance current node.
             TempNode = currentNode;
@@ -815,16 +822,15 @@ namespace custom
     template <typename T>
     typename list <T> ::iterator  list <T> ::erase(const list <T> ::iterator& it)
     {
-        // Check if the iterator is valid and not pointing to end()
+        // Check if the iterator is valid
         if (!it.p)
             return it;
              
         // Get the node to erase
         Node* nodeToDelete = it.p;
-        Node* nodeToReturn = nullptr;
-
         // Create an iterator to the next node
-        //iterator nextIt = iterator(nodeToDelete->pNext);
+        Node* nodeToReturn = nodeToDelete->pNext;
+
 
         // Update pointers
         if (nodeToDelete->pPrev)
@@ -832,20 +838,15 @@ namespace custom
         else
         {
             pHead = nodeToDelete->pNext; // Node is head
-            nodeToReturn = pHead;
         }
         if (nodeToDelete->pNext)
             nodeToDelete->pNext->pPrev = nodeToDelete->pPrev;
         else
         {
             pTail = nodeToDelete->pPrev; // Node is tail
-            nodeToReturn = pTail;
         }
 
-        if (!nodeToReturn)
-        {
-            nodeToReturn = nodeToDelete->pNext;
-        }
+        
         // Delete the node
         delete nodeToDelete;
         --numElements;
@@ -869,6 +870,7 @@ namespace custom
 
         Node* newNode = new Node(data);
 
+        //set up the nodes before and after where we want the new node to be
         Node* targetNode = it.p;
         Node* previousNode;
         
@@ -906,7 +908,7 @@ namespace custom
                 newNode->pPrev = pTail;
                 pTail = newNode;
             }
-            //if given an empty list
+            //if given an empty list this becomes the only node
             else
             {
                 pHead = newNode;
@@ -996,53 +998,21 @@ namespace custom
     template <typename T>
     void list<T>::swap(list <T>& rhs)
     {
-        //if the target list is empty, clear the current list.
-        //if (rhs.empty() && !this->empty())
-        //{
-        //    rhs.pHead = this->pHead;
-        //    rhs.pTail = this->pTail;
-        //    rhs.numElements = this->numElements;
-        //    this->clear();
-        //}
+        //create placeholders
+        Node* tempHead = rhs.pHead;
+        Node* tempTail = rhs.pTail; 
+        size_t tempElem = rhs.numElements;
 
-        //// if this lis is not empty make it so.
-        //if (this->empty() && !rhs.empty())
-        //{
-        //    this->pHead = rhs.pHead;
-        //    this->pTail = rhs.pTail;
-        //    this->numElements = rhs.numElements;
-        //    rhs.clear();
-        //}
-        if (rhs.empty())
-        {
-            this->clear();
-        }
+        //move left to right
+        rhs.pHead = this->pHead;
+        rhs.pTail = this->pTail;
+        rhs.numElements = this->numElements;
 
-        // if this lis is not empty make it so.
-        if (!this->empty())
-        {
-            this->clear();
-        }
-
-        // create a current node var. initilize it with the targets's head.
-        Node* currentNode = rhs.pHead;
-
-        // set this lists head as the current node.
-        pHead = currentNode;
-
-        // loop though all the nodes in the target list.
-        while (currentNode) {
-            // insert the current nodes data in to this list.
-            push_back(currentNode->data);
-
-            // advance the current node.
-            currentNode = currentNode->pNext;
-        }
-
-        // verify that the numElements are the same.
-        // this should always be true because push_back updates numElements.
-        //assert(numElements == rhs.numElements); 
-    }
+        //move temp to left
+        this->pHead = tempHead;
+        this->pTail = tempTail;
+        this->numElements = tempElem;
+}
 
     //#endif
 }; // namespace custom
