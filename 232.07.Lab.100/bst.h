@@ -522,7 +522,11 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
     // Clear the current contents of the tree
     clear();
 
-    // Begin inserting each element from the il into the tree
+    // Initialize flags for insertion direction
+    bool insertLeft = false;
+    bool insertRight = false;
+
+    // Begin inserting each element from the initializer list into the tree
     for (const T& element : il)
     {
         // Begin by inserting the root
@@ -533,41 +537,47 @@ BST <T> & BST <T> :: operator = (const std::initializer_list<T>& il)
         }
         else
         {
-            // Initialize pointers to current and parent nodes, starting at the root
+            // Initialize pointers to current node starting at the root
             BNode* current = root;
             BNode* parent = nullptr;
 
             // Begin traversing the tree to find the right position for the element
             while (current != nullptr)
             {
-                // Update the parent pointer
                 parent = current;
                 if (element < current->data)
                 {
                     // Move to the left child
                     current = current->pLeft;
+                    
+                    // Update flags
+                    if (insertRight)
+                        insertRight = false;
+                    insertLeft = true;
                 }
-                else
+                else // element >= current->data
                 {
                     // Move to the right child
                     current = current->pRight;
+
+                    // Update flags
+                    if (insertLeft)
+                        insertLeft = false;
+                    insertRight = true;
                 }
             }
 
-            // Insert the new node as the left or right child of the parent
-            if (element > parent->data)
+            // Determine whether to insert the new node as the left or right child
+            BNode* newNode = new BNode(element);
+            if (insertLeft)
             {
-                // Create a new right child node and link it
-                parent->pRight = new BNode(element);
-                parent->pRight->pParent = parent;
+                parent->pLeft = newNode;
             }
             else
             {
-                // Create a new left child node and link it
-                parent->pLeft = new BNode(element);
-                parent->pLeft->pParent = parent;
+                parent->pRight = newNode;
             }
-            // Increment the number of elements after adding a node
+            newNode->pParent = parent;
             ++numElements;
         }
     }
@@ -619,10 +629,10 @@ void BST <T> :: swap (BST <T>& rhs)
 template <typename T>
 std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, bool keepUnique)
 {
-    // Initialize the return value as a pair with end() and false]
+    // Initialize the return value as a pair with end() and false
     std::pair<iterator, bool> pairReturn(end(), false);
 
-    //Initialize flags for inserting left or right
+    // Initialize flags for inserting left or right
     bool insertRight = false;
     bool insertLeft = false;
 
@@ -657,75 +667,51 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
                 current = current->pLeft;
 
                 // Update flags
-                if (insertRight)
-                {
-                    insertRight = false;
-                }
                 insertLeft = true;
+                insertRight = false;
             }
-            else if (t > current->data) // Determine if data should go on the right side of current
+            else
             {
-                // Advance to the right node
+                // Advance to the right node (including duplicates)
                 current = current->pRight;
 
                 // Update flags
-                if (insertLeft)
-                {
-                    insertLeft = false;
-                }
                 insertRight = true;
-            }
-            else // t is equal to the data in the current node
-            {
-                // Duplicates are moved to the right, so advance to the right node
-                current = current->pRight;
-
-                // Update flags
-                if (insertLeft)
-                {
-                    insertLeft = false;
-                }
-                insertRight = true;
+                insertLeft = false;
             }
         }
     }
-    else //duplicates are not allowed
+    else // duplicates are not allowed
     {
         // Begin traversing the tree to find the insertion point
         while (current != nullptr)
         {
             parent = current;
 
-            // Determine if t is equal to the data inside of current node
+            // Determine if t is equal to the data inside the current node
             if (t == current->data)
             {
-                // Since duplicates are not allowed, simply return the current node.
+                // Since duplicates are not allowed, simply return the current node
                 pairReturn.first = iterator(current);
                 return pairReturn;
             }
-            else if (t < current->data) // Determine if t is less than the data inside of current
+            else if (t < current->data) // Determine if t is less than the data inside the current node
             {
                 // Advance to the next node on the left
                 current = current->pLeft;
 
                 // Update flags
-                if (insertRight)
-                {
-                    insertRight = false;
-                }
                 insertLeft = true;
+                insertRight = false;
             }
-            else if (t > current->data) // Determine if t is greater than the data inside of current
+            else // t > current->data is now handled by default
             {
                 // Advance to the next node on the right
                 current = current->pRight;
 
                 // Update flags
-                if (insertLeft)
-                {
-                    insertLeft = false;
-                }
                 insertRight = true;
+                insertLeft = false;
             }
         }
     }
@@ -733,20 +719,20 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
     // Create a new node
     BNode* newNode = new BNode(t);
 
-
     // Link it to the parent using the flags
     if (insertLeft)
     {
         parent->pLeft = newNode;
     }
-    else {
+    else
+    {
         parent->pRight = newNode;
     }
 
     // Link the new node to the parent
     newNode->pParent = parent;
 
-    // Increaste the numElements by 1 and return the newNode
+    // Increase the numElements by 1 and return the newNode
     ++numElements;
     pairReturn.first = iterator(newNode);
     pairReturn.second = true;
@@ -759,7 +745,7 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
     // Initialize the return value as a pair with end() and false
     std::pair<iterator, bool> pairReturn(end(), false);
 
-    //Initialize flags for inserting left or right
+    // Initialize flags for inserting left or right
     bool insertRight = false;
     bool insertLeft = false;
 
@@ -777,7 +763,7 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
     BNode* parent = nullptr;
 
     // If duplicates are allowed
-    if (keepUnique == false)
+    if (!keepUnique)
     {
         // Begin traversing the tree to find the insertion point
         while (current != nullptr)
@@ -792,33 +778,17 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
 
                 // Update flags
                 if (insertRight)
-                {
                     insertRight = false;
-                }
                 insertLeft = true;
             }
-            else if (t > current->data)
+            else
             {
-                // Advance to the next node on the right
+                // Advance to the next node on the right (including duplicates)
                 current = current->pRight;
 
                 // Update flags
                 if (insertLeft)
-                {
                     insertLeft = false;
-                }
-                insertRight = true;
-            }
-            else // Case in which t is equal to the data in current
-            {
-                // Advance to the node on the right since duplicates are moved to the right
-                current = current->pRight;
-
-                // Update flags
-                if (insertLeft)
-                {
-                    insertLeft = false;
-                }
                 insertRight = true;
             }
         }
@@ -831,7 +801,7 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
             parent = current;
 
             // Determine if t is equal to the current node's data
-            if (t == current->data)
+            if (t == current->data) 
             {
                 // Since duplicates are not allowed, no new node is added simple return the current node
                 pairReturn.first = iterator(current);
@@ -844,21 +814,17 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
 
                 // Update flags
                 if (insertRight)
-                {
                     insertRight = false;
-                }
                 insertLeft = true;
             }
-            else if (t > current->data) 
+            else
             {
                 // Advance to the node on the right
                 current = current->pRight;
 
                 // Update flags
                 if (insertLeft)
-                {
                     insertLeft = false;
-                }
                 insertRight = true;
             }
         }
