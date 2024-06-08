@@ -229,6 +229,11 @@ public:
        return temp;
    }
 
+   BNode* getNode()
+   {
+       return pNode;
+   }
+
    // must give friend status to remove so it can call getNode() from it
    friend BST <T> :: iterator BST <T> :: erase(iterator & it);
 
@@ -571,39 +576,67 @@ std::pair<typename BST <T> :: iterator, bool> BST <T> :: insert(const T & t, boo
     // Start at the root and traverse the tree to find the insertion point
     BNode* current = root;
     BNode* parent = nullptr;
-    while (current != nullptr)
+    if (keepUnique == false)
     {
-        parent = current;
-        if (t < current->data)
+        while (current != nullptr)
         {
-            current = current->pLeft;
-            if (insertRight)
+            parent = current;
+            if (t < current->data)
             {
-                insertRight = false;
+                current = current->pLeft;
+                if (insertRight)
+                {
+                    insertRight = false;
+                }
+                insertLeft = true;
             }
-            insertLeft = true;
-        }
-        else if (t > current->data)
-        {
-            current = current->pRight;
-            if (insertLeft)
+            else if (t > current->data)
             {
-                insertLeft = false;
+                current = current->pRight;
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
             }
-            insertRight = true;
-        }
-        else
-        {
-            // If duplicates are allowed and and a node with the same value is found
-            if (keepUnique)
+            else
             {
-                // Update the return pair
-                pairReturn.first = iterator(current);
-                return pairReturn;
-            }
-            else {
-
                 current = current->pRight; // Duplicates are moved to the right
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
+            }
+        }
+    }
+    else
+    {
+        while (current != nullptr)
+        {
+            parent = current;
+            if (t == current->data)
+            {
+                // If duplicates are allowed and and a node with the same value is found
+                if (keepUnique)
+                {
+                    // Update the return pair
+                    pairReturn.first = iterator(current);
+                    return pairReturn;
+                }
+            }
+            else if (t < current->data)
+            {
+                current = current->pLeft;
+                if (insertRight)
+                {
+                    insertRight = false;
+                }
+                insertLeft = true;
+            }
+            else if (t > current->data)
+            {
+                current = current->pRight;
                 if (insertLeft)
                 {
                     insertLeft = false;
@@ -638,6 +671,10 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
     // Initialize the return value as a pair with end() and false
     std::pair<iterator, bool> pairReturn(end(), false);
 
+    //Initialize flags for inserting left or right
+    bool insertRight = false;
+    bool insertLeft = false;
+
     // If the tree is empty, create a new root node
     if (root == nullptr) {
         root = new BNode(std::move(t));
@@ -647,35 +684,82 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
         return pairReturn;
     }
 
-    // Comparator object
-    std::less<T> less;
-
     // Start at the root and traverse the tree to find the insertion point
     BNode* current = root;
     BNode* parent = nullptr;
-    while (current != nullptr) {
-        parent = current;
-        if (less(t, current->data)) { // Use std::less for comparison
-            current = current->pLeft;
-        }
-        else if (less(current->data, t)) { // Use std::less for comparison
-            current = current->pRight;
-        }
-        else {
-            // If duplicates are not allowed and we find a node with the same value
-            if (keepUnique) {
-                pairReturn.first = iterator(current);
-                return pairReturn;
+    if (keepUnique == false)
+    {
+        while (current != nullptr)
+        {
+            parent = current;
+            if (t < current->data)
+            {
+                current = current->pLeft;
+                if (insertRight)
+                {
+                    insertRight = false;
+                }
+                insertLeft = true;
             }
-            else {
-                current = current->pRight; // For duplicates, move to the right
+            else if (t > current->data)
+            {
+                current = current->pRight;
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
+            }
+            else
+            {
+                current = current->pRight; // Duplicates are moved to the right
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
+            }
+        }
+    }
+    else
+    {
+        while (current != nullptr)
+        {
+            parent = current;
+            if (t == current->data)
+            {
+                // If duplicates are allowed and and a node with the same value is found
+                if (keepUnique)
+                {
+                    // Update the return pair
+                    pairReturn.first = iterator(current);
+                    return pairReturn;
+                }
+            }
+            else if (t < current->data)
+            {
+                current = current->pLeft;
+                if (insertRight)
+                {
+                    insertRight = false;
+                }
+                insertLeft = true;
+            }
+            else if (t > current->data)
+            {
+                current = current->pRight;
+                if (insertLeft)
+                {
+                    insertLeft = false;
+                }
+                insertRight = true;
             }
         }
     }
 
     // Create a new node and attach it to the parent
     BNode* newNode = new BNode(std::move(t));
-    if (less(t, parent->data)) {
+    if (insertLeft) {
         parent->pLeft = newNode;
     }
     else {
@@ -695,8 +779,93 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
  ************************************************/
 template <typename T>
 typename BST <T> ::iterator BST <T> :: erase(iterator & it)
-{  
-    return end();
+{
+    // If tree is emtpy or the iterator is empty, return an iterator pointing to a nulllptr
+    if (numElements == 0 || it.getNode() == nullptr)
+    {
+        return end();
+    }
+
+    // Initialize pointers pointing to the node to get deleted and its parent
+    BNode* nodeToDelete = it.getNode();
+    BNode* parent = nodeToDelete->pParent;
+
+    // If the node to delete is a leaf node, simply delete the node
+    if (nodeToDelete->pLeft == nullptr && nodeToDelete->pRight == nullptr)
+    {
+        // nodeToDelete is on the right side of its parent
+        if (nodeToDelete->isRightChild(nodeToDelete))
+        {
+            // Update the parent's right side
+            parent->pRight = nullptr;
+        }
+        else // nodeToDelete is on the left side of its parent
+        {
+            // Update the parent's left side
+            parent->pLeft = nullptr;
+        }
+
+        // Delete nodeToDelete, decrease the numElements by 1, and return the parent
+        delete nodeToDelete;
+        --numElements;
+        return iterator(parent);
+    }
+    else if (nodeToDelete->pLeft != nullptr && nodeToDelete->pRight != nullptr) // Node to delete has children on both sides
+    {
+
+    }
+    else // Node to delete has one child
+    {
+        iterator nextNode = it;
+        ++nextNode;
+
+        // Node has its child on the right side
+        if (nodeToDelete->pRight != nullptr)
+        {
+            // Determine if nodeToDelete is right child
+            if (nodeToDelete->isRightChild(nodeToDelete))
+            {
+                // Update parent's right side with nodeToDelete's child
+                parent->pRight = nodeToDelete->pRight;
+                
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pRight->pParent = parent;
+            }
+            else
+            {
+                // Update parent's left side with nodeToDelete's child
+                parent->pLeft = nodeToDelete->pRight;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pRight->pParent = parent;
+            }
+        }
+        else // Node has its child on the left side
+        {
+            // Determine if nodeToDelete is right child
+            if (nodeToDelete->isRightChild(nodeToDelete))
+            {
+                // Update parent's right side with nodeToDelete's child
+                parent->pRight = nodeToDelete->pLeft;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pLeft->pParent = parent;
+            }
+            else
+            {
+                // Update parent's left side with nodeToDelete's child
+                parent->pLeft = nodeToDelete->pLeft;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pLeft->pParent = parent;
+            }
+        }
+
+        // Delete node, decrease number of elements by 1, and return the next node in the sequence.
+        delete nodeToDelete;
+        --numElements;
+        return nextNode;
+    }
 }
 
 /*****************************************************
