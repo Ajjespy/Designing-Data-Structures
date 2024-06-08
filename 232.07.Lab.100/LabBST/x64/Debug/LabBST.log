@@ -1,0 +1,8 @@
+﻿  testBST.cpp
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\testBST.h(133,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
+  (compiling source file 'testBST.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\testBST.h(158,22): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
+  (compiling source file 'testBST.cpp')
+  
+  LabBST.vcxproj -> C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\x64\Debug\LabBST.exe

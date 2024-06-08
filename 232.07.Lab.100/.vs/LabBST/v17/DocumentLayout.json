@@ -1,0 +1,110 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|solutionrelative:bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testBST.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|solutionrelative:testBST.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\spy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|solutionrelative:spy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testSpy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{33A3699D-E53B-4D7D-91F6-08A35D97501E}|LabBST.vcxproj|solutionrelative:testSpy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 218,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "bst.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\bst.h",
+              "RelativeDocumentMoniker": "bst.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\bst.h",
+              "RelativeToolTip": "bst.h",
+              "ViewState": "AQIAAKsBAAAAAAAAAAAAAKsBAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T21:01:35.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "testSpy.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testSpy.h",
+              "RelativeDocumentMoniker": "testSpy.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testSpy.h",
+              "RelativeToolTip": "testSpy.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T21:03:43.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "spy.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\spy.h",
+              "RelativeDocumentMoniker": "spy.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\spy.h",
+              "RelativeToolTip": "spy.h",
+              "ViewState": "AQIAACIAAAAAAAAAAAAEwDEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T21:03:45.391Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 182,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "testBST.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testBST.h",
+              "RelativeDocumentMoniker": "testBST.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.07.Lab.100\\testBST.h",
+              "RelativeToolTip": "testBST.h",
+              "ViewState": "AQIAAKwCAAAAAAAAAAAAAL4CAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-07T21:03:39.583Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -425,7 +425,7 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
    // Check for self-assignment
    if (this != &rhs)
    {
-       // Clear the contents of the bst
+       
        clear();
 
        numElements = rhs.numElements;
