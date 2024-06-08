@@ -229,6 +229,11 @@ public:
        return temp;
    }
 
+   BNode* getNode()
+   {
+       return pNode;
+   }
+
    // must give friend status to remove so it can call getNode() from it
    friend BST <T> :: iterator BST <T> :: erase(iterator & it);
 
@@ -774,8 +779,93 @@ std::pair<typename BST <T> ::iterator, bool> BST <T> ::insert(T && t, bool keepU
  ************************************************/
 template <typename T>
 typename BST <T> ::iterator BST <T> :: erase(iterator & it)
-{  
-    return end();
+{
+    // If tree is emtpy or the iterator is empty, return an iterator pointing to a nulllptr
+    if (numElements == 0 || it.getNode() == nullptr)
+    {
+        return end();
+    }
+
+    // Initialize pointers pointing to the node to get deleted and its parent
+    BNode* nodeToDelete = it.getNode();
+    BNode* parent = nodeToDelete->pParent;
+
+    // If the node to delete is a leaf node, simply delete the node
+    if (nodeToDelete->pLeft == nullptr && nodeToDelete->pRight == nullptr)
+    {
+        // nodeToDelete is on the right side of its parent
+        if (nodeToDelete->isRightChild(nodeToDelete))
+        {
+            // Update the parent's right side
+            parent->pRight = nullptr;
+        }
+        else // nodeToDelete is on the left side of its parent
+        {
+            // Update the parent's left side
+            parent->pLeft = nullptr;
+        }
+
+        // Delete nodeToDelete, decrease the numElements by 1, and return the parent
+        delete nodeToDelete;
+        --numElements;
+        return iterator(parent);
+    }
+    else if (nodeToDelete->pLeft != nullptr && nodeToDelete->pRight != nullptr) // Node to delete has children on both sides
+    {
+
+    }
+    else // Node to delete has one child
+    {
+        iterator nextNode = it;
+        ++nextNode;
+
+        // Node has its child on the right side
+        if (nodeToDelete->pRight != nullptr)
+        {
+            // Determine if nodeToDelete is right child
+            if (nodeToDelete->isRightChild(nodeToDelete))
+            {
+                // Update parent's right side with nodeToDelete's child
+                parent->pRight = nodeToDelete->pRight;
+                
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pRight->pParent = parent;
+            }
+            else
+            {
+                // Update parent's left side with nodeToDelete's child
+                parent->pLeft = nodeToDelete->pRight;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pRight->pParent = parent;
+            }
+        }
+        else // Node has its child on the left side
+        {
+            // Determine if nodeToDelete is right child
+            if (nodeToDelete->isRightChild(nodeToDelete))
+            {
+                // Update parent's right side with nodeToDelete's child
+                parent->pRight = nodeToDelete->pLeft;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pLeft->pParent = parent;
+            }
+            else
+            {
+                // Update parent's left side with nodeToDelete's child
+                parent->pLeft = nodeToDelete->pLeft;
+
+                // Update nodeToDelete's child's parent
+                nodeToDelete->pLeft->pParent = parent;
+            }
+        }
+
+        // Delete node, decrease number of elements by 1, and return the next node in the sequence.
+        delete nodeToDelete;
+        --numElements;
+        return nextNode;
+    }
 }
 
 /*****************************************************
