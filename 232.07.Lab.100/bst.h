@@ -291,14 +291,54 @@ typename BST<T>::BNode* BST<T>::copyBNode(BNode* src, BNode* parent)
         return nullptr;
     }
 
-    // Create a new node with the same data as the src
-    BNode* newNode = new BNode(src->data);
+    //create a temperary new node
+    BNode* newNode = nullptr;
+
+    //make sure that parent isn't null
+    if (parent)
+    {
+        //if src is a left child then set the new node to the left child of parent
+        if ((src->pParent)->isLeftChild(src))
+        {
+            newNode = parent->pLeft;
+        }
+        //otherwise must be right child
+        else
+        {
+            newNode = parent->pRight;
+        }
+    }
+    
+
+    // if new node is still null then make it a new node with the same data as the src
+    if (!newNode)  
+    {
+        newNode = new BNode(src->data);   
+    }
+    //otherwise copy the data over
+    else
+    {
+        newNode->data = src->data;
+    }
+    
+    //attach to parent
     newNode->pParent = parent;
-    newNode->isRed = src->isRed;
+
+    //establish logic to ensure deletion of extraneous nodes if *this is bigger than src
+    if (!src->pLeft && newNode->pLeft) 
+    {
+        deleteBNode(newNode->pLeft);  
+    }
+    if (!src->pRight && newNode->pLeft)  
+    {
+        deleteBNode(newNode->pRight);  
+    }
 
     // Using recursion, copy the left and right children
-    newNode->pLeft = copyBNode(src->pLeft, newNode);
+    newNode->pLeft = copyBNode(src->pLeft, newNode); 
     newNode->pRight = copyBNode(src->pRight, newNode);
+
+
 
     // Return the newNode, which is now the root of the copied BST
     return newNode;
@@ -409,7 +449,7 @@ template <typename T>
 void BST<T>::deleteBNode(BNode* node)
 {
     // If the node to be deleted is already deleted, the recusive loop should stop
-    if (node == nullptr)
+    if (!node)
         return;
 
     // Recursively delete the right and left children
@@ -430,17 +470,42 @@ BST <T> & BST <T> :: operator = (const BST <T> & rhs)
    // Check for self-assignment
    if (this != &rhs)
    {
-       
-       clear();
-
-       numElements = rhs.numElements;
-
-       // Copy the bst from the rhs, as long as it is not null
-       if (rhs.root != nullptr)
+       //if both roots are allocated then copy the data over
+       if (root && rhs.root)
        {
-           // Copy the nodes from the rhs using copyBNode
-           root = copyBNode(rhs.root, nullptr);
+           root->data = rhs.root->data;
        }
+       else
+       {
+           //this catches an empty rhs bst and clears *this
+           if (!rhs.root)
+           {
+               clear();
+               return *this;
+           }
+           //if we get here then *this is empty and a new root must be allocated
+           else
+           {
+               root = new BNode(rhs.root->data);
+           }
+       }
+
+       //check if rhs has children and delete nodes from *this if necisary
+       if (!rhs.root->pLeft && root->pLeft)
+       {
+           deleteBNode(root->pLeft);
+       }
+       if (!rhs.root->pRight && root->pRight)
+       {
+           deleteBNode(root->pRight);
+       }
+
+       //start the copy recursion
+       root->pLeft = copyBNode(rhs.root->pLeft, root); 
+       root->pRight = copyBNode(rhs.root->pRight, root); 
+
+       //update the numElements not the the data is updated
+       numElements = rhs.numElements;
    }
 
    // Return the new bst

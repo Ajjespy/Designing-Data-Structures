@@ -5,4 +5,6 @@ C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\testBST.h(1
 C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\testBST.h(158,22): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
   (compiling source file 'testBST.cpp')
   
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\bst.h(920,1): warning C4715: 'custom::BST<Spy>::erase': not all control paths return a value
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\bst.h(920,1): warning C4715: 'custom::BST<int>::erase': not all control paths return a value
   LabBST.vcxproj -> C:\Users\ajjes\source\repos\Designing-Data-Structures\232.07.Lab.100\x64\Debug\LabBST.exe
