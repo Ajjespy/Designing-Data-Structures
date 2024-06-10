@@ -13,7 +13,7 @@
 *        set                 : A class that represents a Set
 *        set::iterator       : An iterator through Set
 * Author
-*    <Your name here>
+*    Emilio Ordonez Guerrero, Austin Jesperson, Evan Riker
 ************************************************************************/
 
 #pragma once
@@ -174,57 +174,67 @@ class set <T> :: iterator
 public:
    // constructors, destructors, and assignment operator
    iterator() 
-   { 
+   {
+       it = nullptr;
    }
    iterator(const typename custom::BST<T>::iterator& itRHS) 
-   {  
+   {
+       it = itRHS;
    }
    iterator(const iterator & rhs) 
-   { 
+   {
+       it = rhs.it;
    }
    iterator & operator = (const iterator & rhs)
    {
-      return *this;
+       it = rhs.it;
+       return *this;
    }
 
    // equals, not equals operator
    bool operator != (const iterator & rhs) const 
    { 
-      return true; 
+       return it != rhs.it;
    }
    bool operator == (const iterator & rhs) const 
    { 
-      return true; 
+       return it == rhs.it;
    }
 
    // dereference operator: by-reference so we can modify the Set
    const T & operator * () const 
    { 
-      return *(new T); 
+       return *it;
    }
 
    // prefix increment
    iterator & operator ++ ()
    {
-      return *this;
+       iterator temp = *this;
+       ++(it);
+       return temp;
    }
 
    // postfix increment
    iterator operator++ (int postfix)
    {
+      ++(*this);
       return *this;
    }
    
    // prefix decrement
    iterator & operator -- ()
    {
-      return *this;
+       iterator temp = *this;
+       --(*this);
+       return temp;
    }
    
    // postfix decrement
    iterator operator-- (int postfix)
    {
-      return *this;
+       --(*this);
+       return *this;
    }
    
 private:
