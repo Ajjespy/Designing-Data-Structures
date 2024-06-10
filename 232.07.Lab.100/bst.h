@@ -188,14 +188,16 @@ class BST <T> :: iterator
    friend class set; 
 public:
    // constructors and assignment
-   iterator(BNode* p = nullptr) : pNode(p) {}
-   iterator(const iterator& rhs) : pNode(rhs.pNode) {}
-   iterator & operator = (const iterator & rhs)
-   {
-       if (this != &rhs)
-           pNode = rhs.pNode;
-       return *this;
-   }
+    iterator(BNode* p = nullptr)
+    {
+    }
+    iterator(const iterator& rhs)
+    {
+    }
+    iterator& operator = (const iterator& rhs)
+    {
+        return *this;
+    }
 
    // compare
    bool operator == (const iterator & rhs) const
