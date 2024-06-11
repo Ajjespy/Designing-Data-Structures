@@ -146,20 +146,32 @@ public:
    //
    std::pair<iterator, bool> insert(const T& t)
    {
-      std::pair<iterator, bool> p(iterator(), true);
-      return p;
+       // Use bst.insert
+       return bst.insert(t);
    }
    std::pair<iterator, bool> insert(T&& t)
    {
-      std::pair<iterator, bool> p(iterator(), true);
-      return p;
+       // Use bst.insert
+       return bst.insert(t);
    }
    void insert(const std::initializer_list <T>& il)
    {
+       // Iterate through each element in the initializer list
+       for (const T& element : il) 
+       {
+           // Insert each element using the bst.insert method
+           bst.insert(element);
+       }
    }
    template <class Iterator>
    void insert(Iterator first, Iterator last)
    {
+       // Iterate from first to last
+       for (Iterator it = first; it != last; ++it) 
+       {
+           // Insert each iterator using the bst.insert method
+           bst.insert(it);
+       }
    }
 
 
@@ -172,15 +184,31 @@ public:
        bst.clear();
    }
    iterator erase(iterator &it)
-   { 
-       return iterator();
+   {
+       // Use bst.erase method, access the bst iterator within the set iterator
+       return bst.erase(it.it);
    }
    size_t erase(const T & t) 
    {
+       // Find the element in the set
+       iterator it = find(t);
+
+       // If element is found, erase it and return 1 to indicate one element erased
+       if (it != end()) {
+           erase(it);
+           return 1;
+       }
+
+       // If element is not found, return 0 to indicate no elements were erased
+       return 0;
    }
    iterator erase(iterator &itBegin, iterator &itEnd)
    {
-      return iterator();
+       // Iterate from itBegin to itEnd
+       for (iterator it = itBegin; it != itEnd; ++it)
+       {
+           return erase(it);
+       }
    }
 
 private:

@@ -114,11 +114,11 @@ public:
       test_eraseIterator_noChildren();
       test_eraseIterator_oneChild();
       test_eraseIterator_twoChildren();
-//      test_eraseValue_empty();
-//      test_eraseValue_standardMissing();
-//      test_eraseValue_noChildren();
-//      test_eraseValue_oneChild();
-//      test_eraseValue_twoChildren();
+      test_eraseValue_empty();
+      test_eraseValue_standardMissing();
+      test_eraseValue_noChildren();
+      test_eraseValue_oneChild();
+      test_eraseValue_twoChildren();
       test_eraseRange_standardNone();
       test_eraseRange_standardOne();
       test_eraseRange_standardMany();
