@@ -43,20 +43,30 @@ public:
    // Construct
    //
    set() 
-   { 
-   }
-   set(const set &  rhs)
-   { 
-   }
-   set(set && rhs) 
-   { 
-   }
-   set(const std::initializer_list <T> & il) 
    {
    }
+   set(const set &  rhs)
+   {
+       // Assign rhs bst to this
+       bst = rhs.bst;
+   }
+
+   set(set && rhs) 
+   {
+       // Assign rhs bst to this
+       bst = std::move(rhs.bst);
+   }
+
+   set(const std::initializer_list <T> & il) 
+   {
+       // Use BST intializer list constructor
+       bst = custom::BST <T>(il);
+   }
+
    template <class Iterator>
    set(Iterator first, Iterator last) 
    {
+
    }
   ~set() { }
 
@@ -66,18 +76,30 @@ public:
 
    set & operator = (const set & rhs)
    {
-      return *this;
+       // Assign rhs.bst to this.bst
+       bst = rhs.bst;
+       return *this;
    }
    set & operator = (set && rhs)
    {
-      return *this;
+       // Assign rhs.bst to this.bst using std::move 
+       bst = std::move(rhs.bst);
+       return *this;
    }
    set & operator = (const std::initializer_list <T> & il)
    {
-      return *this;
+       // Clear the contents of the bst first
+       bst.clear();
+
+       // Use initializer list constructor from BST class. 
+       bst = custom::BST <T>(il);
+       return *this;
    }
+
    void swap(set& rhs) noexcept
    {
+       // Use std::swap to swap this.bst and rhs.bst
+       std::swap(bst, rhs.bst);
    }
 
    //
