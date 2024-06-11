@@ -109,11 +109,13 @@ public:
    class iterator;
    iterator begin() const noexcept 
    { 
-      return iterator(); 
+       // Return bst.begin() method
+       return bst.begin();
    }
    iterator end() const noexcept 
    { 
-      return iterator(); 
+       // Return bst.end() method
+       return bst.end();
    }
 
    //
@@ -121,19 +123,22 @@ public:
    //
    iterator find(const T& t) 
    { 
-      return iterator(); 
+       // Return bst.find() method
+       return bst.find(t);
    }
 
    //
    // Status
    //
    bool   empty() const noexcept 
-   { 
-      return true;    
+   {
+       // Return bst.empty()
+       return bst.empty();
    }
    size_t size() const noexcept 
    { 
-      return 99;     
+       // Return bst.size()
+       return bst.size();
    }
 
    //
@@ -162,15 +167,16 @@ public:
    // Remove
    //
    void clear() noexcept 
-   { 
+   {
+       // Use bst.clear()
+       bst.clear();
    }
    iterator erase(iterator &it)
    { 
-      return iterator(); 
+       return iterator();
    }
    size_t erase(const T & t) 
    {
-      return 99;
    }
    iterator erase(iterator &itBegin, iterator &itEnd)
    {
