@@ -872,6 +872,8 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
     // Initialize pointers pointing to the node to get deleted and its parent
     BNode* nodeToDelete = it.getNode();
     BNode* parent = nodeToDelete->pParent;
+    iterator nextNode = it; 
+    ++nextNode; 
 
     // If the node to delete is a leaf node, simply delete the node
     if (nodeToDelete->pLeft == nullptr && nodeToDelete->pRight == nullptr)
@@ -891,7 +893,7 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
         // Delete nodeToDelete, decrease the numElements by 1, and return the parent
         delete nodeToDelete;
         --numElements;
-        return iterator(parent);
+        return nextNode;
     }
     else if (nodeToDelete->pLeft != nullptr && nodeToDelete->pRight != nullptr) // Node to delete has children on both sides
     {
@@ -908,30 +910,41 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
             // Link the successor to the parent's left side
             nodeToDelete->pParent->pLeft = successor;
         }
-        else
+        else if (nodeToDelete->isRightChild(nodeToDelete))
         {
             // Link the successor to the parent's right side
-            nodeToDelete->pParent->pRight = successor;
+            nodeToDelete->pParent->pRight = successor; 
+        }
+        else
+        {
+            // If the node is the root
+            root = successor;
         }
 
         // Link the successor to nodeToDelete's parent and left child
+        if (successor->isLeftChild(successor))
+        {
+            successor->pParent->pLeft = nullptr;
+        }
+        
         successor->pParent = nodeToDelete->pParent;
         successor->pLeft = nodeToDelete->pLeft;
 
         // Link nodeToDelete's left child back to the successor
         successor->pLeft->pParent = successor;
 
-        // Determine if the successor has children on the right
-        if (successor->pRight != nullptr)
-        {
-            // Link successor child with nodeToDelete's right child and vice versa
-            nodeToDelete->pRight->pLeft = successor->pRight;
-            successor->pRight->pParent = nodeToDelete->pRight;
-        }
+       
 
         // Link the successor to nodeToDelete's right child
         if (successor != nodeToDelete->pRight)
         {
+            // Determine if the successor has children on the right
+            if (successor->pRight != nullptr)
+            {
+                // Link successor child with nodeToDelete's right child and vice versa
+                nodeToDelete->pRight->pLeft = successor->pRight;
+                successor->pRight->pParent = nodeToDelete->pRight;
+            }
             successor->pRight = nodeToDelete->pRight;
 
             // Link nodeToDelete's right child back to the successor
@@ -944,12 +957,11 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
         --numElements;
 
         // Return the successor
-        return iterator(successor);
+        return nextNode; 
     }
     else // Node to delete has one child
     {
-        iterator nextNode = it;
-        ++nextNode;
+        
 
         // Node has its child on the right side
         if (nodeToDelete->pRight != nullptr)

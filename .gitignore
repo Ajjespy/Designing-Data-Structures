@@ -40,3 +40,15 @@
 *.db-shm
 *.db-wal
 /232.07.Lab.100/.vs/LabBST/v17/Browse.VC.opendb
+/.vs/Designing-Data-Structures/FileContentIndex/6db0ab08-b953-4937-9851-fa97c2a95bc9.vsidx
+/.vs/Designing-Data-Structures/FileContentIndex/70c84f16-eebb-48d9-b73f-436613f3e955.vsidx
+/.vs/Designing-Data-Structures/FileContentIndex/afc328eb-6d79-46af-91e4-077abfaa9f6c.vsidx
+/.vs/Designing-Data-Structures/FileContentIndex/fa857ac5-113c-44a7-833c-0363cc01e599.vsidx
+/.vs/Designing-Data-Structures/FileContentIndex/fb4fa57b-2fbb-4c75-963a-4212542ddd29.vsidx
+/232.08.Lab.100/.vs/LabSet/FileContentIndex/7f73bdd0-2629-4108-be95-19ddf721c76c.vsidx
+/232.08.Lab.100/.vs/LabSet/FileContentIndex/edf4273a-669a-471e-8148-0b7e101bd2e2.vsidx
+/232.08.Lab.100/.vs/LabSet/v17/.suo
+/232.08.Lab.100/.vs/LabSet/FileContentIndex/ee60063b-7b17-463c-8b00-debbf115abdd.vsidx
+/232.08.Lab.100/.vs/LabSet/FileContentIndex/fef31cc6-0d91-4502-b131-badf09430f5e.vsidx
+*.vsidx
+*.opendb

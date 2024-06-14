@@ -66,7 +66,12 @@ public:
    template <class Iterator>
    set(Iterator first, Iterator last) 
    {
-
+       // Iterate from first to last
+       for (Iterator it = first; it != last; ++it)
+       {
+           // Insert each iterator using the bst.insert method
+           bst.insert(*it);
+       }
    }
   ~set() { }
 
@@ -147,12 +152,12 @@ public:
    std::pair<iterator, bool> insert(const T& t)
    {
        // Use bst.insert
-       return bst.insert(t);
+       return bst.insert(t, true);
    }
    std::pair<iterator, bool> insert(T&& t)
    {
        // Use bst.insert
-       return bst.insert(t);
+       return bst.insert(t, true);
    }
    void insert(const std::initializer_list <T>& il)
    {
@@ -160,7 +165,7 @@ public:
        for (const T& element : il) 
        {
            // Insert each element using the bst.insert method
-           bst.insert(element);
+           bst.insert(element, true);
        }
    }
    template <class Iterator>
@@ -204,11 +209,20 @@ public:
    }
    iterator erase(iterator &itBegin, iterator &itEnd)
    {
-       // Iterate from itBegin to itEnd
-       for (iterator it = itBegin; it != itEnd; ++it)
+       iterator temp = itBegin; 
+
+       /*if (itBegin != itEnd)
        {
-           return erase(it);
+           ++itEnd;
+       }*/
+       
+       // Iterate from itBegin to itEnd
+       for (iterator it = itBegin; it != itEnd;)
+       {
+           it = erase(it); 
+           temp = it;
        }
+       return temp;   
    }
 
 private:
