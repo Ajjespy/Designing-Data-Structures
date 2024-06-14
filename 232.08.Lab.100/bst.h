@@ -872,6 +872,8 @@ typename BST <T> ::iterator BST <T> :: erase(iterator & it)
     // Initialize pointers pointing to the node to get deleted and its parent
     BNode* nodeToDelete = it.getNode();
     BNode* parent = nodeToDelete->pParent;
+
+    //we want to return an iterator to the next node in sequene
     iterator nextNode = it; 
     ++nextNode; 
 
