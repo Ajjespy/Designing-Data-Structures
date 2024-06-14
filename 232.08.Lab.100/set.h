@@ -151,12 +151,12 @@ public:
    //
    std::pair<iterator, bool> insert(const T& t)
    {
-       // Use bst.insert
+       // Use bst.insert, use true because we don't want duplicates
        return bst.insert(t, true);
    }
    std::pair<iterator, bool> insert(T&& t)
    {
-       // Use bst.insert
+       // Use bst.insert, use true because we don't want duplicates
        return bst.insert(t, true);
    }
    void insert(const std::initializer_list <T>& il)
@@ -164,7 +164,7 @@ public:
        // Iterate through each element in the initializer list
        for (const T& element : il) 
        {
-           // Insert each element using the bst.insert method
+           // Insert each element using the bst.insert method, use true because we don't want duplicates
            bst.insert(element, true);
        }
    }
@@ -209,19 +209,17 @@ public:
    }
    iterator erase(iterator &itBegin, iterator &itEnd)
    {
+       //set an iterator to return
        iterator temp = itBegin; 
-
-       /*if (itBegin != itEnd)
-       {
-           ++itEnd;
-       }*/
        
        // Iterate from itBegin to itEnd
        for (iterator it = itBegin; it != itEnd;)
        {
+           //erase automatically returns an iterator to the next node
            it = erase(it); 
            temp = it;
        }
+
        return temp;   
    }
 

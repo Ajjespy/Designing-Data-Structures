@@ -5,5 +5,5 @@ C:\Users\ajjes\source\repos\Designing-Data-Structures\232.08.Lab.100\testBST.h(1
 C:\Users\ajjes\source\repos\Designing-Data-Structures\232.08.Lab.100\testBST.h(149,22): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
   (compiling source file 'testSet.cpp')
   
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.08.Lab.100\set.h(285,1): warning C4172: returning address of local variable or temporary: temp
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.08.Lab.100\set.h(283,1): warning C4172: returning address of local variable or temporary: temp
   LabSet.vcxproj -> C:\Users\ajjes\source\repos\Designing-Data-Structures\232.08.Lab.100\x64\Debug\LabSet.exe
