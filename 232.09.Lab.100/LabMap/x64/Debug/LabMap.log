@@ -1,0 +1,45 @@
+﻿  testMap.cpp
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testBST.h(124,18): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testBST.h(149,22): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24): error C3861: 't': identifier not found
+  (compiling source file 'testMap.cpp')
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(43,7):
+  	while compiling class template 'custom::map'
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24): error C2065: 't': undeclared identifier
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(339,15): error C3861: 'bst': identifier not found
+  (compiling source file 'testMap.cpp')
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\bst.h(64,21):
+  This diagnostic occurred in the compiler generated function 'void custom::swap(custom::map<KK,VV> &,custom::map<KK,VV> &)'
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(339,15): error C2065: 'bst': undeclared identifier
+  (compiling source file 'testMap.cpp')
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\bst.h(64,21):
+  This diagnostic occurred in the compiler generated function 'void custom::swap(custom::map<KK,VV> &,custom::map<KK,VV> &)'
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(370,21): error C3861: 'itBegin': identifier not found
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,24): error C3861: 'itBegin': identifier not found
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,39): error C3861: 'itEnd': identifier not found
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(370,21): error C2065: 'itBegin': undeclared identifier
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,24): error C2065: 'itBegin': undeclared identifier
+  (compiling source file 'testMap.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,39): error C2065: 'itEnd': undeclared identifier
+  (compiling source file 'testMap.cpp')
+  
