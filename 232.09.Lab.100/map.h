@@ -141,13 +141,23 @@ public:
    //
    custom::pair<typename map::iterator, bool> insert(Pairs && rhs)
    {
-       // Use bst.insert, use true because we don't want duplicates
-       return bst.insert(rhs, true);
+       custom::pair<typename map::iterator, bool> pairReturn(end(), false);
+       std::pair<iterator, bool> tempPair = bst.insert(rhs, true);
+       
+       pairReturn.first = iterator(tempPair.first);
+       pairReturn.second = tempPair.second;
+
+       return pairReturn;
    }
    custom::pair<typename map::iterator, bool> insert(const Pairs & rhs)
    {
-       // Use bst.insert, use true because we don't want duplicates
-       return bst.insert(rhs, true);
+       custom::pair<typename map::iterator, bool> pairReturn(end(), false);
+       std::pair<iterator, bool> tempPair = bst.insert(rhs, true);
+
+       pairReturn.first = iterator(tempPair.first);
+       pairReturn.second = tempPair.second;
+
+       return pairReturn;
    }
 
    template <class Iterator>
@@ -293,17 +303,32 @@ private:
 template <typename K, typename V>
 V& map <K, V> :: operator [] (const K& key)
 {
-   return *(new V);
+    Pairs temp(key, V());
+    std::pair<iterator, bool> returnPair = bst.insert(temp, true);
+
+    iterator itBST = returnPair.first;
+
+    return itBST.it.pNode->data.second;
 }
 
 /*****************************************************
  * MAP :: SUBSCRIPT
  * Retrieve an element from the map
  ****************************************************/
-template <typename K, typename V>
-const V& map <K, V> :: operator [] (const K& key) const
+template <typename K, typename V> 
+const V& map <K, V> :: operator [] (const K& key) const 
 {
-   return *(new V);
+    Pairs temp(key, V());
+    iterator itBST = bst.find(temp);
+
+    if (itBST != bst.end())
+    {
+        return itBST.it.pNode->data.second;
+    }
+    else
+    {
+        return temp.second;
+    }
 }
 
 /*****************************************************
@@ -313,9 +338,17 @@ const V& map <K, V> :: operator [] (const K& key) const
 template <typename K, typename V>
 V& map <K, V> ::at(const K& key)
 {
-    //Pairs temp(key, V());
+    Pairs temp(key, V());
+    iterator itBST = bst.find(temp);
 
-    return *(new V);
+    if (itBST != bst.end())
+    {
+        return itBST.it.pNode->data.second;
+    }
+    else
+    {
+        throw std::out_of_range("invalid map<K, T> key") ;
+    }
 }
 
 /*****************************************************
@@ -325,7 +358,17 @@ V& map <K, V> ::at(const K& key)
 template <typename K, typename V>
 const V& map <K, V> ::at(const K& key) const
 {
-   return *(new V);
+    Pairs temp(key, V());
+    iterator itBST = bst.find(temp);
+
+    if (itBST != bst.end())
+    {
+        return itBST.it.pNode->data.second;
+    }
+    else
+    {
+        throw std::out_of_range("invalid map<K, T> key"); 
+    }
 }
 
 /*****************************************************

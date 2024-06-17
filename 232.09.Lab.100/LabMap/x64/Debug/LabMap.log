@@ -5,41 +5,31 @@ C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testBST.h(1
 C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testBST.h(149,22): warning C4312: 'type cast': conversion from 'unsigned int' to 'custom::BST<Spy>::BNode *' of greater size
   (compiling source file 'testMap.cpp')
   
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24): error C3861: 't': identifier not found
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440: 'return': cannot convert from 'std::pair<custom::BST<custom::pair<K,V,std::less<std::string>>>::iterator,bool>' to 'custom::pair<custom::map<std::string,int>::iterator,bool,std::less<T1>>'
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         with
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         [
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:             K=std::string,
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:             V=int
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         ]
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         and
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         [
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:             T1=custom::map<std::string,int>::iterator
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8): error C2440:         ]
   (compiling source file 'testMap.cpp')
-  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24):
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8):
+  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(150,8):
   the template instantiation context (the oldest one first) is
-  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(43,7):
-  	while compiling class template 'custom::map'
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(136,24): error C2065: 't': undeclared identifier
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(339,15): error C3861: 'bst': identifier not found
-  (compiling source file 'testMap.cpp')
-  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\bst.h(64,21):
-  This diagnostic occurred in the compiler generated function 'void custom::swap(custom::map<KK,VV> &,custom::map<KK,VV> &)'
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(339,15): error C2065: 'bst': undeclared identifier
-  (compiling source file 'testMap.cpp')
-  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\bst.h(64,21):
-  This diagnostic occurred in the compiler generated function 'void custom::swap(custom::map<KK,VV> &,custom::map<KK,VV> &)'
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(370,21): error C3861: 'itBegin': identifier not found
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,24): error C3861: 'itBegin': identifier not found
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,39): error C3861: 'itEnd': identifier not found
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(370,21): error C2065: 'itBegin': undeclared identifier
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,24): error C2065: 'itBegin': undeclared identifier
-  (compiling source file 'testMap.cpp')
-  
-C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(373,39): error C2065: 'itEnd': undeclared identifier
-  (compiling source file 'testMap.cpp')
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testMap.h(136,37):
+  	see reference to class template instantiation 'custom::map<std::string,int>' being compiled
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\map.h(147,47):
+  	while compiling class template member function 'custom::pair<custom::map<std::string,int>::iterator,bool,std::less<T1>> custom::map<std::string,int>::insert(const custom::pair<K,V,std::less<std::string>> &)'
+          with
+          [
+              T1=custom::map<std::string,int>::iterator,
+              K=std::string,
+              V=int
+          ]
+  		C:\Users\ajjes\source\repos\Designing-Data-Structures\232.09.Lab.100\testMap.h(1302,15):
+  		see the first reference to 'custom::map<std::string,int>::insert' in 'TestMap::test_insertCopy_empty'
   

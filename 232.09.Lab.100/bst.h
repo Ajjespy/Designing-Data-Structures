@@ -977,12 +977,17 @@ namespace custom
                     // Update nodeToDelete's child's parent
                     nodeToDelete->pRight->pParent = parent;
                 }
-                else
+                else if (nodeToDelete->isLeftChild(nodeToDelete))
                 {
                     // Update parent's left side with nodeToDelete's child
                     parent->pLeft = nodeToDelete->pRight;
 
                     // Update nodeToDelete's child's parent
+                    nodeToDelete->pRight->pParent = parent;
+                }
+                else //deleted node is the root
+                {
+                    this->root = nodeToDelete->pRight;
                     nodeToDelete->pRight->pParent = parent;
                 }
             }
@@ -997,12 +1002,17 @@ namespace custom
                     // Update nodeToDelete's child's parent
                     nodeToDelete->pLeft->pParent = parent;
                 }
-                else
+                else if (nodeToDelete->isLeftChild(nodeToDelete))
                 {
                     // Update parent's left side with nodeToDelete's child
                     parent->pLeft = nodeToDelete->pLeft;
 
                     // Update nodeToDelete's child's parent
+                    nodeToDelete->pLeft->pParent = parent;
+                }
+                else //deleted node is the root
+                {
+                    this->root = nodeToDelete->pLeft;
                     nodeToDelete->pLeft->pParent = parent;
                 }
             }
