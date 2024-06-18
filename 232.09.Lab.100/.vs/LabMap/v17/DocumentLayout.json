@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|solutionrelative:bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|solutionrelative:map.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\testMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|solutionrelative:testMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2CF55B61-C8BE-45D3-B4D0-89BCE0E3F8B4}|LabMap.vcxproj|solutionrelative:bst.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,13 +42,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "map.h",
               "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\map.h",
               "RelativeDocumentMoniker": "map.h",
               "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\map.h",
               "RelativeToolTip": "map.h",
-              "ViewState": "AQIAAF8BAAAAAAAAAAAUwHEBAAA5AAAA",
+              "ViewState": "AQIAAFYBAAAAAAAAAAAUwHEBAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-17T17:10:50.504Z",
               "EditorCaption": ""
@@ -57,24 +57,24 @@
         },
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "bst.h",
               "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\bst.h",
               "RelativeDocumentMoniker": "bst.h",
               "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\bst.h",
               "RelativeToolTip": "bst.h",
-              "ViewState": "AQIAAN4AAAAAAAAAAAAAAPkAAAAAAAAA",
+              "ViewState": "AQIAAFYBAAAAAAAAAAAAAPkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-06-17T17:44:12.315Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "testMap.h",
               "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.09.Lab.100\\testMap.h",
               "RelativeDocumentMoniker": "testMap.h",
