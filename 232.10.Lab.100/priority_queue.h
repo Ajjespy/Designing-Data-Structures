@@ -13,7 +13,7 @@
  *    This will contain the class definition of:
  *        priority_queue          : A class that represents a Priority Queue
  * Author
- *    <your names here>
+ *    Austin Jesperson, Emilio Ordonez, Evan Riker
  ************************************************************************/
 
 #pragma once
