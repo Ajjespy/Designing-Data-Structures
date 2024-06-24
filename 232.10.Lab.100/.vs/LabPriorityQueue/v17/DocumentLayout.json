@@ -3,8 +3,25 @@
   "WorkspaceRootPath": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\testPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|solutionrelative:testPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\priority_queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|solutionrelative:priority_queue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0B07E8E4-6FEC-45E2-8897-27866DEBAC91}|LabPriorityQueue.vcxproj|solutionrelative:vector.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_array.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\debugger_jmc.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +31,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,15 +51,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "vector.h",
               "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\vector.h",
               "RelativeDocumentMoniker": "vector.h",
               "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\vector.h",
               "RelativeToolTip": "vector.h",
-              "ViewState": "AQIAAIwCAAAAAAAAAAAIwMYCAAAAAAAA",
+              "ViewState": "AQIAAIcAAAAAAAAAAAAEwJwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-06-24T17:37:08.266Z",
+              "WhenOpened": "2024-06-24T20:04:02.7Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "delete_array.cpp",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_array.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_array.cpp",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_array.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_array.cpp",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAkwB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-24T20:17:47.903Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "delete_scalar.cpp",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ViewState": "AQIAABUAAAAAAAAAAAAkwCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-06-24T20:16:58.294Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "testPriorityQueue.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\testPriorityQueue.h",
+              "RelativeDocumentMoniker": "testPriorityQueue.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\testPriorityQueue.h",
+              "RelativeToolTip": "testPriorityQueue.h",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAEwFEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-24T20:05:53.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "priority_queue.h",
+              "DocumentMoniker": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\priority_queue.h",
+              "RelativeDocumentMoniker": "priority_queue.h",
+              "ToolTip": "C:\\Users\\ajjes\\source\\repos\\Designing-Data-Structures\\232.10.Lab.100\\priority_queue.h",
+              "RelativeToolTip": "priority_queue.h",
+              "ViewState": "AQIAANQAAAAAAAAAAAAEwOgAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-06-24T19:53:14.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "debugger_jmc.c",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\crt\\src\\vcruntime\\debugger_jmc.c",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-06-24T19:52:38.155Z",
               "EditorCaption": ""
             }
           ]

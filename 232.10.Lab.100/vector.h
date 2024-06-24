@@ -14,7 +14,7 @@
  *
  *    This will contain the class definition of:
  *        vector                 : A class that represents a Vector
- *        vector::iterator       : An interator through Vector
+ *        vector::iterator       : An iterator through Vector
  * Author
  *    Emilio Ordonez, Austin Jesperson, Evan Riker
  ************************************************************************/
@@ -125,7 +125,7 @@ namespace custom
             {
                 delete[] data;
                 numElements = 0;
-                data = new int[numCapacity];
+                data = new T [numCapacity];
             }
         }
         void pop_back()
@@ -135,7 +135,7 @@ namespace custom
                 return;
             }
 
-            ~int(data[numElements - 1]);
+            ~T(data[numElements - 1]);
             numElements--;
         }
 
@@ -355,7 +355,7 @@ namespace custom
         }
         else
         {
-            data = new int[numElements];
+            data = new T[numElements];
             for (size_t i = 0; i < numElements; ++i)
             {
                 data[i] = rhs.data[i];
@@ -421,7 +421,7 @@ namespace custom
         }
         else
         {
-            int* newData = new T[newCapacity];
+            T* newData = new T[newCapacity];
             for (size_t i = 0; i < std::min(numElements, newCapacity); i++)
             {
                 newData[i] = data[i];
@@ -431,7 +431,7 @@ namespace custom
             // Initialize new elements if newCapacity > numElements
             for (size_t i = numElements; i < newCapacity; i++)
             {
-                newData[i] = int();
+                newData[i] = T();
             }
             numCapacity = newCapacity;
             numElements = newCapacity;
@@ -442,13 +442,13 @@ namespace custom
     template <typename T>
     void vector <T> ::resize(size_t newElements, const T& t)
     {
-        int* newData = new T[newElements];
+        T* newData = new T[newElements];
         for (size_t i = 0; i < numElements; i++)
         {
             newData[i] = data[i];
         }
         delete[] data;
-        for (int i = numElements; i < newElements; i++)
+        for (size_t i = numElements; i < newElements; i++)
         {
             newData[i] = t;
         }
@@ -473,7 +473,7 @@ namespace custom
             return;
         }
 
-        int* newData = new T[newCapacity];
+        T* newData = new T[newCapacity];
         for (size_t i = 0; i < numElements; i++)
         {
             newData[i] = data[i];
@@ -506,7 +506,7 @@ namespace custom
 
         if (numCapacity > numElements)
         {
-            int* shrinkedData = new T[numElements];
+            T* shrinkedData = new T[numElements]; 
             for (size_t i = 0; i < numElements; i++)
             {
                 shrinkedData[i] = data[i];
@@ -590,7 +590,7 @@ namespace custom
     {
         if (data == nullptr)
         {
-            data = new int[1];
+            data = new T[1];
             data[0] = t;
             numCapacity = 1;
             numElements = 1;
@@ -602,7 +602,7 @@ namespace custom
         }
         else if (numCapacity == numElements)
         {
-            int* newData = new int[numCapacity * 2];
+            T* newData = new T[numCapacity * 2];
 
             for (size_t i = 0; i < numElements; i++)
             {
@@ -621,7 +621,7 @@ namespace custom
     {
         if (data == nullptr)
         {
-            data = new int[1];
+            data = new T[1];
             data[0] = t;
             numCapacity = 1;
             numElements = 1;
@@ -633,7 +633,7 @@ namespace custom
         }
         else if (numCapacity == numElements)
         {
-            int* newData = new int[numCapacity * 2];
+            T* newData = new T[numCapacity * 2];
 
             for (size_t i = 0; i < numElements; i++)
             {
@@ -671,8 +671,8 @@ namespace custom
                 numCapacity = rhs.numCapacity;
             }
 
-            data = new int[numCapacity];
-            for (int i = 0; i < numElements; ++i) {
+            data = new T[numCapacity];
+            for (size_t i = 0; i < numElements; ++i) { 
                 data[i] = rhs.data[i];
             }
         }
@@ -694,8 +694,8 @@ namespace custom
             numCapacity = rhs.numCapacity;
             rhs.numCapacity = 0;
 
-            data = new int[numCapacity];
-            for (int i = 0; i < numElements; ++i) {
+            data = new T[numCapacity];
+            for (size_t i = 0; i < numElements; ++i) { 
                 data[i] = rhs.data[i];
             }
             rhs.data = nullptr;

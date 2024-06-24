@@ -46,21 +46,30 @@ public:
    }
    priority_queue(const priority_queue &  rhs)  
    { 
+       //*this = rhs;
    }
    priority_queue(priority_queue && rhs)  
    { 
+       //*this = std::move(rhs); 
    }
    template <class Iterator>
    priority_queue(Iterator first, Iterator last) 
    {
+       container.reserve(last - first);
+       for (Iterator it = first; it != last; it++) 
+       {
+           push(*it);
+       }
    }
    explicit priority_queue (custom::vector<T> && rhs) 
    {
+       container = rhs;
    }
    explicit priority_queue (custom::vector<T>& rhs)
    {
+       container = rhs;
    }
-  ~priority_queue() {}
+   ~priority_queue() {  }
 
    //
    // Access
@@ -83,11 +92,11 @@ public:
    //
    size_t size()  const 
    { 
-      return 99;   
+      return container.size();   
    }
    bool empty() const 
    { 
-      return false;  
+      return container.empty();  
    }
    
 private:
@@ -106,7 +115,14 @@ private:
 template <class T>
 const T & priority_queue <T> :: top() const
 {
-   return *(new T);
+    if (container.size() > 0)
+    {
+        return container.front();
+    }
+    else
+    {
+        return T();
+    }
 }
 
 /**********************************************
@@ -116,6 +132,13 @@ const T & priority_queue <T> :: top() const
 template <class T>
 void priority_queue <T> :: pop()
 {
+    if (!container.empty())
+    {
+        std::swap(container[0], container[container.size() - 1]);
+        container.pop_back();
+        percolateDown(1);
+    }
+    
 }
 
 /*****************************************
@@ -125,10 +148,28 @@ void priority_queue <T> :: pop()
 template <class T>
 void priority_queue <T> :: push(const T & t)
 {
+    container.push_back(t); 
+    //size_t i = (container.size() % 2 == 0) ? container.size() / 2 : container.size() / 2 - 1; 
+    //if it doesn't work then try forcing I into an int, otherwise use the above
+    size_t i = container.size() / 2;
+
+    while (i && percolateDown(i)) 
+    {
+        i = i / 2;
+    }
 }
 template <class T>
 void priority_queue <T> :: push(T && t)
 {
+    container.push_back(t);
+    //size_t i = (container.size() % 2 == 0) ? container.size() / 2 : container.size() / 2 - 1; 
+    //if it doesn't work then try forcing I into an int, otherwise use the above
+    size_t i = container.size() / 2;
+
+    while (i && percolateDown(i))
+    {
+        i = i / 2;
+    }
 }
 
 /************************************************
@@ -140,7 +181,42 @@ void priority_queue <T> :: push(T && t)
 template <class T>
 bool priority_queue <T> :: percolateDown(size_t indexHeap)
 {
-   return false;
+    
+    size_t indexBigger = indexHeap; 
+    size_t indexLeft = indexHeap * 2;
+    size_t indexRight = indexLeft + 1;
+
+    //case for checking both children
+    if (indexLeft <= container.size() && !container.empty())
+    {
+        if (indexRight <= container.size()) 
+        {
+            if (container[indexLeft - 1] < container[indexRight - 1]) 
+            {
+                indexBigger = indexRight; 
+            }
+            else
+            {
+                indexBigger = indexLeft; 
+            }
+        }
+        else
+        {
+            indexBigger = indexLeft;
+        }
+    }
+    else
+    {
+        return false;
+    }
+
+
+    if (container[indexHeap - 1] < container[indexBigger - 1])  
+    {
+        std::swap(container[indexHeap - 1], container[indexBigger - 1]); 
+        percolateDown(indexBigger);
+        return true;
+    }
 }
 
 /************************************************
@@ -150,6 +226,15 @@ bool priority_queue <T> :: percolateDown(size_t indexHeap)
 template <class T>
 void priority_queue <T> ::heapify()
 {
+    //size_t i = (container.size() % 2 == 0) ? container.size() / 2 : container.size() / 2 - 1;
+    //if it doesn't work then try forcing I into an int, otherwise use the above
+    size_t i = container.size() / 2;
+
+    for (i;  i > 0; i--)
+    {
+        percolateDown(i);
+    }
+
 }
 
 /************************************************
@@ -160,6 +245,7 @@ template <class T>
 inline void swap(custom::priority_queue <T>& lhs,
                  custom::priority_queue <T>& rhs)
 {
+    lhs.container.swap(rhs.container); 
 }
 
 };

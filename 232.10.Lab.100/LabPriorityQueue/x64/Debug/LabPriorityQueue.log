@@ -1,0 +1,41 @@
+﻿  testPriorityQueue.cpp
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testVector.h(136,16): warning C4312: 'type cast': conversion from 'unsigned int' to 'int *' of greater size
+  (compiling source file 'testPriorityQueue.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testVector.h(151,16): warning C4312: 'type cast': conversion from 'unsigned int' to 'int *' of greater size
+  (compiling source file 'testPriorityQueue.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testVector.h(167,16): warning C4312: 'type cast': conversion from 'unsigned int' to 'int *' of greater size
+  (compiling source file 'testPriorityQueue.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testVector.h(201,16): warning C4312: 'type cast': conversion from 'unsigned int' to 'int *' of greater size
+  (compiling source file 'testPriorityQueue.cpp')
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\vector.h(138,13): warning C4552: '~': result of expression not used
+  (compiling source file 'testPriorityQueue.cpp')
+  C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\vector.h(138,13):
+  the template instantiation context (the oldest one first) is
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testPriorityQueue.h(97,36):
+  	see reference to class template instantiation 'custom::priority_queue<int>' being compiled
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\priority_queue.h(107,22):
+  	see reference to class template instantiation 'custom::vector<T>' being compiled
+          with
+          [
+              T=int
+          ]
+  	C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\vector.h(131,14):
+  	while compiling class template member function 'void custom::vector<T>::pop_back(void)'
+          with
+          [
+              T=int
+          ]
+  		C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\testVector.h(1481,17):
+  		see the first reference to 'custom::vector<T>::pop_back' in 'TestVector::test_popback_empty'
+          with
+          [
+              T=int
+          ]
+  
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\priority_queue.h(124,1): warning C4172: returning address of local variable or temporary
+C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\priority_queue.h(220,1): warning C4715: 'custom::priority_queue<int>::percolateDown': not all control paths return a value
+  LabPriorityQueue.vcxproj -> C:\Users\ajjes\source\repos\Designing-Data-Structures\232.10.Lab.100\x64\Debug\LabPriorityQueue.exe
